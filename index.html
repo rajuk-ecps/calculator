@@ -564,7 +564,7 @@
 	}
     document.addEventListener('click', e => { if (!document.getElementById('searchInp').contains(e.target)) document.getElementById('searchSuggestions').style.display = 'none'; });
 	
-	<!--Service Worker for Offline function-->
+	// Service Worker for Offline function
 	  if ('serviceWorker' in navigator) {
 		window.addEventListener('load', () => {
 		  navigator.serviceWorker.register('./sw.js')
@@ -573,7 +573,7 @@
 		});
 	  }
 	  const CACHE_NAME = 'rajuk-calc-v1.0';
-	  <!--Current Version Update-->
+	 // Current Version Update
 	  const CURRENT_APP_VERSION = 1.0;
 	</script>
 </body>
