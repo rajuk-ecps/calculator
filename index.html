@@ -2,10 +2,10 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 	<!-- PWA এবং থিম কালার সেটিংস -->
-	<meta name="theme-color" content="#141824"> <!-- ড্যাশবোর্ডের ডার্ক নীল কালার -->
+	<meta name="theme-color" content="#0f141d">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -58,15 +58,24 @@
         }
 		
         body { 
-            font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
-            background: var(--bg); margin: 0; padding: 20px; 
-            color: var(--text-main); transition: background 0.3s, color 0.3s;
-            font-size: 14px;
-			-webkit-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-        }
+			    font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
+			    background-color: var(--bg); 
+			    margin: 0; 
+			    padding: 20px; 
+			    /* সিস্টেম নেভিগেশন ও স্ট্যাটাস বারের প্যাডিং এডজাস্টমেন্ট */
+			    padding-top: calc(20px + env(safe-area-inset-top));
+			    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+			    min-height: 100vh;
+			    box-sizing: border-box;
+			    color: var(--text-main); 
+			    transition: background 0.3s, color 0.3s;
+			    font-size: 14px;
+			    -webkit-user-select: none;
+			    -moz-user-select: none;
+			    -ms-user-select: none;
+			    user-select: none;
+			}
+		
 				/* যাতে ইনপুট বক্সে আবার ইউজার লিখতে পারে */
 		input, textarea {
 			user-select: text !important;
