@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rajuk-calc-v1.0';
+const CACHE_NAME = 'rajuk-calc-v2.0';
 
 // যে ফাইলগুলো অফলাইনেও সচল রাখতে চান (আপনার সাইটের ফাইল অনুযায়ী নাম পরিবর্তন করুন)
 const ASSETS_TO_CACHE = [
