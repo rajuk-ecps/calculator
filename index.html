@@ -31,15 +31,15 @@
     :root { 
     /* রাজউক পোর্টালের আসল ও প্রিমিয়াম কালার প্যালেট */
     --bg: #dce7f1; 
-    --card-bg: #ffffff; 
+    --card-bg: rgba(15, 76, 129, 0.04); /* কার্ডের ব্যাকগ্রাউন্ড আবার সফট ও হালকা ব্লু টোন করা হলো */
     --primary: #0f4c81;        
     --primary-dark: #0a355c;  
     --accent: #0f4c81;         
     --accent-hover: #0a355c;
     --text-main: #0f172a; 
     --text-sub: #475569; 
-    --input-bg: #f1f5f9; /* ইনপুট বক্সের অতিরিক্ত সাদা ভাব দূর করার জন্য সলিসিড হালকা শেড */
-    --border: #cbd5e1; 
+    --input-bg: rgba(255, 255, 255, 0.7); /* ইনপুট বক্সের সফট ট্রান্সপারেন্ট ব্যাকগ্রাউন্ড */
+    --border: rgba(15, 76, 129, 0.15); 
     --blue: #0284c7; 
     --red: #ef4444; 
     --success: #10b981; 
@@ -58,11 +58,11 @@
 
 body.light-mode {
     --bg: #dce7f1; 
-    --card-bg: #ffffff;
-    --input-bg: #f1f5f9;
+    --card-bg: rgba(15, 76, 129, 0.04);
+    --input-bg: rgba(255, 255, 255, 0.7);
     --text-main: #0f172a;
     --text-sub: #64748b;
-    --border: #cbd5e1;
+    --border: rgba(15, 76, 129, 0.15);
     --res-bg: #f1f5f9;
     --res-main-bg: #e2e8f0;
     --res-blue-bg: #dbeafe;
@@ -120,14 +120,34 @@ input, button, select, textarea, #status-text {
 }
 .action-btn:hover { border-color: #ffffff; background: #ffffff; color: var(--primary) !important; }
 
-.tab-wrapper { display: flex; gap: 8px; margin-bottom: 15px; justify-content: center; }
+/* সুইচ বাটন বা ট্যাব কন্ট্রোল (কম্প্যাক্ট সাইজ) */
+.tab-wrapper { 
+    display: flex; 
+    gap: 8px; 
+    margin-bottom: 15px; 
+    justify-content: center; 
+}
 .tab-btn { 
-    flex: 1; padding: 10px; border: 1px solid var(--border); background: var(--card-bg);
-    color: var(--text-sub); font-weight: bold; cursor: pointer; border-radius: 12px; transition: 0.3s;
-    font-size: 12px; text-transform: uppercase; text-align: center;
+    flex: 0 1 140px; 
+    padding: 10px 15px; 
+    border: 1px solid var(--border); 
+    background: var(--card-bg);
+    color: var(--text-sub); 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 12px; 
+    transition: 0.3s;
+    font-size: 12px; 
+    text-transform: uppercase;
+    text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
-.tab-btn.active { background: var(--primary); color: #ffffff; border-color: var(--primary); box-shadow: 0 4px 12px rgba(15, 76, 129, 0.25); }
+.tab-btn.active { 
+    background: var(--primary); 
+    color: #ffffff; 
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(15, 76, 129, 0.25);
+}
 
 .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; align-items: stretch; }
 
@@ -141,7 +161,7 @@ input, button, select, textarea, #status-text {
     box-sizing: border-box;     
     position: relative;     
     height: 100%;     
-    box-shadow: 0 8px 20px rgba(15, 76, 129, 0.06); 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02); 
 }
 
 .card-title { 
@@ -275,7 +295,7 @@ input, button, select, textarea, #status-text {
 #singleCardResult::-webkit-scrollbar { width: 4px; }
 #singleCardResult::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-/* মোবাইল ফ্রেন্ডলি রেসপন্সিভ ডিজাইন ফিক্স (ন্যাড়া বা ফাঁকা ভাব দূর করার জন্য) */
+/* মোবাইল ফ্রেন্ডলি রেসপন্সিভ ডিজাইন ফিক্স */
 @media (max-width: 900px) { 
     body {
         padding: 10px !important;
@@ -293,6 +313,9 @@ input, button, select, textarea, #status-text {
     .btn-group {
         justify-content: center;
         width: 100%;
+    }
+    .tab-btn {
+        flex: 1; 
     }
     .card { 
         min-height: auto !important; 
@@ -367,7 +390,6 @@ input, button, select, textarea, #status-text {
         margin: 0.5cm; 
     }
 }
-</style>
 </head>
 	
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
