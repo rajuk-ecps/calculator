@@ -47,10 +47,8 @@
     font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
     background-color: var(--bg); 
     margin: 0; 
-    padding: 20px; 
-    padding-top: calc(20px + env(safe-area-inset-top));
-    padding-bottom: calc(20px + env(safe-area-inset-bottom));
-    min-height: 100vh;
+    padding: 15px; /* ফিক্সড ছোট প্যাডিং, যাতে হাইট বেশি না টানে */
+    width: 100%;
     box-sizing: border-box;
     color: var(--text-main); 
     transition: background 0.3s, color 0.3s;
@@ -60,7 +58,6 @@
     -ms-user-select: none;
     user-select: none;
 }
-
 #rajuk-app-root.light-mode {
     --bg: #eaf2f8; 
     --card-bg: #ffffff;
