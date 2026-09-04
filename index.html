@@ -664,11 +664,11 @@ transform: translateY(0) scale(0.98);
     // স্পেসিং কমানোর জন্য margin-top: 5px এবং padding: 12px করা হয়েছে
     resultDiv.innerHTML = `
         <div style="background: var(--card-bg); padding:12px; border-radius:12px; border: 1px solid var(--border); border-left:4px solid var(--accent); margin-top:5px; margin-bottom:10px;">
-            <span style="background:var(--accent); color:#000; padding:2px 6px; border-radius:4px; font-size:9px; font-weight:bold; display:inline-block;">Block-${selectedBlock.id}</span>
+            <span style="background:var(--accent); color:#fff; padding:2px 6px; border-radius:4px; font-size:9px; font-weight:bold; display:inline-block;">Block-${selectedBlock.id}</span>
             <div style="font-size:14px; font-weight:bold; margin-top:5px; color:var(--text-main);">${selectedBlock.name}</div>
             <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-sub); margin-top:8px; border-top:1px solid rgba(255,255,255,0.05); padding-top:6px;">
                 <span>FAR: <span style="color: #3b82f6; font-weight: 800; font-size: 14px; margin-left: 5px;">${selectedBlock.far.toFixed(2)}</span></span>
-				<span>DENSITY: <span style="color: #3b82f6; font-weight: 800; font-size: 14px; margin-left: 5px;">${selectedBlock.density}</span></span>
+                <span>DENSITY: <span style="color: #3b82f6; font-weight: 800; font-size: 14px; margin-left: 5px;">${selectedBlock.density}</span></span>
             </div>
         </div>`;
 	}
