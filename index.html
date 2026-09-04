@@ -120,19 +120,19 @@ user-select: text !important;
 
         .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
 
-        .card { 
-            background: var(--card-bg); 
-		    border-radius: 20px; 
-		    padding: 25px; 
-		    border: 1px solid var(--border); 
-		    display: flex; 
+        .card {         
+		    /* মূল রাজউক ব্লু থিমের ওপর ভিত্তি করে ৫০%-৬০% লাইট সফট টোন (এখানে অপাসিটি ০.০৫ বা ০.০৬ ব্যবহার করা হয়েছে) */
+		    background: rgba(15, 76, 129, 0.05); 
+		    border-radius: 20px;     
+		    padding: 25px;     
+		    border: 1px solid rgba(15, 76, 129, 0.12); /* বর্ডারটিও কার্ডের সাথে মিলিয়ে একটু সফট করা হলো */
+		    display: flex;     
 		    flex-direction: column;
-		    box-sizing: border-box; 
-		    position: relative; 
-		    /* min-height সরিয়ে height: 100% দেওয়া হলো যেন দুই পাশের কার্ড সমান থাকে */
-		    height: 100%; 
-		    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
+		    box-sizing: border-box;     
+		    position: relative;     
+		    height: 100%;     
+		    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+		}
         .card-title { 
             font-size: 14px; color: var(--primary); margin-bottom: 20px; 
             font-weight: bold; border-bottom: 2px solid var(--primary); padding-bottom: 10px; 
