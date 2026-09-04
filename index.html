@@ -7,8 +7,8 @@
 	<!-- PWA এবং থিম কালার সেটিংস -->
 	<meta name="theme-color" content="#eaf2f8">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	
 	<!-- ম্যানিফেস্ট লিংক -->
 	<link rel="manifest" href="./manifest.json">
 
@@ -223,11 +223,16 @@ display: none !important;
 }
 
 body { 
-background: white !important; 
-color: black !important; 
-padding: 0 !important; 
-margin: 0 !important;
-font-size: 12px;
+	font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
+    background-color: #eaf2f8 !important; 
+    margin: 0; 
+    /* নচ এবং স্ট্যাটাস বারের নিচে পর্যাপ্ত জায়গা রাখার জন্য প্যাডিং ফিক্স */
+    padding: 15px; 
+    padding-top: max(20px, env(safe-area-inset-top)) !important;
+    padding-bottom: max(20px, env(safe-area-inset-bottom)) !important;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: var(--text-main);
 }
 
 .container { max-width: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
