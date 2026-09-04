@@ -3,8 +3,8 @@
   "short_name": "Rajuk Far",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
   "theme_color": "#0d416b",
+  "background_color": "#f0f4f8"
   "orientation": "portrait-primary",
   "icons": [
     {
