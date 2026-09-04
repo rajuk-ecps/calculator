@@ -28,20 +28,21 @@
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <style>
     :root { 
-        --bg: #f0f4f8; 
+        /* ক্লিন লাইট থিম কালার প্যালেট */
+        --bg: #f1f5f9; 
         --card-bg: #ffffff;
-        --input-bg: #ffffff;
-        --text-main: #1e293b; 
+        --input-bg: #f8fafc;
+        --text-main: #0f172a; 
         --text-sub: #64748b;
-        --border: #e2e8f0; 
-        --accent: #0d416b; 
-        --accent-hover: #082d4b;
-        --accent-light: #eef5fb; 
+        --border: #cbd5e1; 
+        --accent: #f59e0b; /* রেফারেন্সের অরেঞ্জ অ্যাকসেন্ট */
+        --accent-hover: #d97706;
+        --accent-light: rgba(245, 158, 11, 0.1); 
         --blue: #0284c7;
         --red: #ef4444;
         --success: #10b981;
         --res-bg: #f8fafc;
-        --res-main-bg: #e0f2fe; 
+        --res-main-bg: #fffbeeb0; 
     }
     
     #loader { 
@@ -55,29 +56,29 @@
         text-align: center; padding: 20px 0; width: 100%; box-sizing: border-box; justify-content: center;
     }
     .box { 
-        background: var(--card-bg); padding: 25px; border-radius: 10px; 
-        border: 1px solid var(--border); max-width: 360px; width: 100%; 
-        box-shadow: 0 2px 8px rgba(13, 65, 107, 0.05); box-sizing: border-box; 
+        background: var(--card-bg); padding: 25px; border-radius: 16px; 
+        border: 1.5px solid var(--border); max-width: 360px; width: 100%; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05); box-sizing: border-box; 
     }
     
     .id-badge { 
-        background: var(--accent-light); color: var(--accent); 
-        padding: 6px 12px; border-radius: 6px; font-weight: 600; 
-        font-size: 12px; display: inline-block; margin: 10px 0; border: 1px solid #cbd5e1; 
+        background: var(--accent-light); color: #b45309; 
+        padding: 6px 12px; border-radius: 8px; font-weight: 600; 
+        font-size: 12px; display: inline-block; margin: 10px 0; border: 1px solid #fde68a; 
     }
     .payment-info { 
-        background: #fafafa; border: 1px dashed var(--border); 
-        padding: 10px; border-radius: 8px; margin: 10px 0; color: var(--text-main); 
+        background: var(--bg); border: 1px dashed var(--border); 
+        padding: 10px; border-radius: 10px; margin: 10px 0; color: var(--text-main); 
         font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 500;
     }
     .copy-btn { 
         background: var(--accent); border: none; padding: 5px 10px; 
-        border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 12px; color: #ffffff; 
+        border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px; color: #ffffff; 
     }
     
     .styled-input { 
-        width: 100%; padding: 10px; margin: 6px 0; border-radius: 6px; 
-        border: 1px solid var(--border); background: #ffffff; color: var(--text-main); 
+        width: 100%; padding: 10px; margin: 6px 0; border-radius: 8px; 
+        border: 1px solid var(--border); background: var(--input-bg); color: var(--text-main); 
         box-sizing: border-box; outline: none; font-size: 14px; font-weight: 500;
     }
     
@@ -85,9 +86,9 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hind Siliguri", sans-serif;
         background-color: var(--bg); 
         margin: 0; 
-        padding: 20px; 
-        padding-top: calc(20px + env(safe-area-inset-top));
-        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+        padding: 24px; 
+        padding-top: calc(24px + env(safe-area-inset-top));
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
         min-height: 100vh;
         box-sizing: border-box;
         color: var(--text-main); 
@@ -113,79 +114,91 @@
     
     .container { max-width: 1280px; margin: 0 auto; width: 100%; }
 
+    /* লাইট রিমোট হেডার উইথ রাউন্ডেড কর্নার */
     .app-header {
         display: flex; justify-content: space-between; align-items: center;
-        background: var(--accent); padding: 12px 20px; border-radius: 8px;
-        color: #ffffff; margin-bottom: 16px;
-        box-shadow: 0 2px 6px rgba(13, 65, 107, 0.1);
+        background: #0d416b; padding: 14px 24px; border-radius: 16px;
+        color: #ffffff; margin-bottom: 24px;
+        box-shadow: 0 4px 15px rgba(13, 65, 107, 0.1);
     }
-    .app-title { font-size: 18px; font-weight: 600; color: #ffffff; letter-spacing: 0.3px; }
+    .app-title { font-size: 18px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
 
     .btn-group { display: flex; gap: 8px; }
     .action-btn { 
-        padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.25);
-        background: rgba(255,255,255,0.1); color: #ffffff; cursor: pointer;
-        font-size: 12px; font-weight: 500; transition: 0.2s;
+        padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1); color: #ffffff; cursor: pointer;
+        font-size: 12px; font-weight: 600; transition: 0.2s;
+        display: flex; align-items: center; gap: 6px;
     }
-    .action-btn:hover { background: #ffffff; color: var(--accent); }
+    .action-btn:hover { background: #ffffff; color: #0d416b; }
 
-    .tab-wrapper { display: flex; gap: 8px; margin-bottom: 16px; justify-content: center; }
+    /* ট্যাবলেট বাটন রাউন্ডেড কর্নার */
+    .tab-wrapper { display: flex; gap: 12px; margin-bottom: 24px; justify-content: center; }
     .tab-btn { 
-        flex: 0 1 180px; padding: 10px; border: 1px solid var(--border); background: var(--card-bg);
-        color: var(--text-sub); font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.2s;
-        font-size: 13px; text-transform: uppercase;
+        flex: 0 1 200px; padding: 12px 20px; border: 1.5px solid var(--border); background: var(--card-bg);
+        color: var(--text-sub); font-weight: 700; cursor: pointer; border-radius: 12px; transition: 0.2s;
+        font-size: 13px; text-transform: uppercase; text-align: center;
     }
-    .tab-btn.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+    .tab-btn.active { 
+        background: var(--accent); 
+        color: #ffffff; 
+        border-color: var(--accent); 
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    }
 
-    /* Flex Alignment for Top Alignment */
     .main-grid { 
         display: grid; 
         grid-template-columns: 1fr 1fr; 
-        gap: 16px; 
-        align-items: start; /* কন্টেন্ট অনুযায়ী টপে এলাইন হবে */
+        gap: 24px; 
+        align-items: start;
     }
 
-    /* Auto Height Slim Cards */
+    /* সুন্দর রাউন্ড বর্ডার কার্ড layout */
     .card { 
-        background: var(--card-bg); border-radius: 8px; padding: 18px; 
-        border: 1px solid var(--border); display: flex; flex-direction: column;
-        box-sizing: border-box; position: relative; 
+        background: var(--card-bg); 
+        border-radius: 18px; 
+        padding: 24px; 
+        border: 1.5px solid var(--border); 
+        display: flex; 
+        flex-direction: column;
+        box-sizing: border-box; 
+        position: relative; 
         height: auto !important; 
-        min-height: 0 !important; /* অতিরিক্ত ফাঁকা হাইট রিমুভ করা হয়েছে */
-        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        min-height: 0 !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
     .card-title { 
-        font-size: 14px; color: var(--accent); margin-bottom: 12px; 
-        font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 6px; 
-        text-transform: uppercase; letter-spacing: 0.3px;
+        font-size: 14px; color: var(--accent); margin-bottom: 20px; 
+        font-weight: 700; border-bottom: 1.5px solid var(--border); padding-bottom: 8px; 
+        text-transform: uppercase; letter-spacing: 0.5px;
     }
 
-    /* কমপ্যাক্ট ইনপুট বক্স */
+    /* রাউন্ড ইনপুট ফিল্ড */
     .inp-box { 
-        margin-bottom: 10px; background: #ffffff; 
-        border: 1px solid var(--border); border-radius: 6px; 
-        padding: 6px 10px; position: relative; overflow: visible; 
+        margin-bottom: 14px; background: var(--input-bg); 
+        border: 1.5px solid var(--border); border-radius: 10px; 
+        padding: 10px 14px; position: relative; overflow: visible; 
     }
-    .inp-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(13, 65, 107, 0.08); }
-    .inp-box label { display: block; font-size: 10px; color: var(--text-sub); margin-bottom: 2px; text-transform: uppercase; font-weight: 600; }
+    .inp-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
+    .inp-box label { display: block; font-size: 10px; color: var(--text-sub); margin-bottom: 4px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.3px; }
     .inp-box input, .logic-select { 
         width: 100%; background: transparent; border: none; color: var(--text-main); 
-        outline: none; font-size: 14px; font-weight: 600;
+        outline: none; font-size: 15px; font-weight: 600;
     }
-    .logic-select option { background: #ffffff; color: var(--text-main); font-weight: 400; }
+    .logic-select option { background: var(--card-bg); color: var(--text-main); font-weight: 500; }
     
     .incentive-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-bottom: 8px;
+        gap: 12px;
+        margin-bottom: 12px;
     }
 
     .incentive-box {
         background: var(--res-bg); 
-        padding: 10px; 
-        border-radius: 6px; 
-        margin-top: 6px; 
+        padding: 12px; 
+        border-radius: 10px; 
+        margin-top: 8px; 
         border: 1px solid var(--border); 
         display: none;
     }
@@ -196,57 +209,57 @@
         right: 0;
         width: 100%;
         box-sizing: border-box;
-        background: #ffffff;
+        background: var(--card-bg);
         max-height: 200px;
         overflow-y: auto;
         z-index: 1000;
-        border: 1px solid var(--accent);
-        border-radius: 6px;
+        border: 1.5px solid var(--accent);
+        border-radius: 10px;
         margin-top: 4px;
         padding: 0;
         list-style: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
-    #searchSuggestions li { padding: 8px 10px; cursor: pointer; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--text-main); transition: 0.15s; }
-    #searchSuggestions li:hover { background: var(--accent-light); color: var(--accent); }
+    #searchSuggestions li { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--text-main); transition: 0.15s; }
+    #searchSuggestions li:hover { background: var(--accent-light); color: #b45309; }
 
-    /* কমপ্যাক্ট রেজাল্ট গ্রিড */
-    .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    /* সফট আউটলাইন লাইট রেজাল্ট কার্ড */
+    .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
     
     .res-item { 
-        background: var(--res-bg); border: 1px solid var(--border); padding: 10px; 
-        border-radius: 6px; text-align: center; display: flex; flex-direction: column; justify-content: center;
+        background: var(--res-bg); border: 1.5px solid var(--border); padding: 14px; 
+        border-radius: 12px; text-align: center; display: flex; flex-direction: column; justify-content: center;
     }
-    .res-item span { font-size: 10px; color: var(--text-sub); display: block; margin-bottom: 2px; text-transform: uppercase; font-weight: 600; }
-    .res-item b { font-size: 16px; color: var(--accent); font-weight: 600; }
+    .res-item span { font-size: 10px; color: var(--text-sub); display: block; margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
+    .res-item b { font-size: 18px; color: var(--text-main); font-weight: 700; }
     
     .highlight { 
-        grid-column: span 2; border: 1px solid #bae6fd; background: var(--res-main-bg); padding: 12px;
+        grid-column: span 2; border: 2px solid var(--accent); background: var(--res-main-bg); padding: 16px; border-radius: 12px;
     }
-    .highlight span { color: #0369a1; }
-    .highlight b { font-size: 22px; color: var(--accent); font-weight: 700; }
+    .highlight span { color: #d97706; font-weight: 700; }
+    .highlight b { font-size: 26px; color: #b45309; font-weight: 800; }
 
     .collapse-header { 
-        background: var(--res-bg); padding: 8px 10px; cursor: pointer; border-radius: 6px; 
-        margin-top: 6px; display: flex; justify-content: space-between; border: 1px solid var(--border); 
+        background: var(--res-bg); padding: 10px 14px; cursor: pointer; border-radius: 10px; 
+        margin-top: 8px; display: flex; justify-content: space-between; border: 1px solid var(--border); 
         font-size: 12px; font-weight: 600; color: var(--text-main); 
     }
     .collapse-header span { color: var(--text-main); font-weight: 600; }
     
     .check-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; margin-bottom: 6px; cursor: pointer; color: var(--text-main); }
-    .check-item input { width: 15px; height: 15px; accent-color: var(--accent); }
+    .check-item input { width: 16px; height: 16px; accent-color: var(--accent); }
 
-    .acc-body { display: none; margin-top: 5px; }
+    .acc-body { display: none; margin-top: 8px; }
     .acc-body.show { display: block; }
     .block-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
-    .block-table th { font-size: 11px; color: var(--accent); text-align: left; padding: 5px; border-bottom: 1px solid var(--border); font-weight: 600; }
-    .block-table td { padding: 6px 5px; font-size: 12px; border-bottom: 1px solid var(--border); font-weight: 500; color: var(--text-main); }
+    .block-table th { font-size: 11px; color: var(--accent); text-align: left; padding: 8px; border-bottom: 1px solid var(--border); font-weight: 700; }
+    .block-table td { padding: 8px; font-size: 12px; border-bottom: 1px solid var(--border); font-weight: 500; color: var(--text-main); }
 
-    .footer { text-align: center; padding: 16px; font-size: 12px; color: var(--text-sub); font-weight: 400; }
+    .footer { text-align: center; padding: 20px; font-size: 12px; color: var(--text-sub); font-weight: 400; }
 
     @media (max-width: 900px) { 
         .main-grid { grid-template-columns: 1fr; }
-        .app-header { flex-direction: column; text-align: center; gap: 10px; }
+        .app-header { flex-direction: column; text-align: center; gap: 12px; }
         .card { min-height: auto !important; height: auto !important; }
     }
     
@@ -282,7 +295,7 @@
             padding: 10px !important; 
             margin: 0 !important;
             box-shadow: none !important;
-            border-radius: 6px !important;
+            border-radius: 8px !important;
         }
 
         .card-title { 
@@ -320,7 +333,7 @@
     #singleCardResult {
         max-height: 180px; 
         overflow-y: auto; 
-        margin-top: 8px;
+        margin-top: 10px;
         scrollbar-width: thin;
         scrollbar-color: var(--accent) transparent;
     }
@@ -333,15 +346,15 @@
         background: var(--accent);
         color: #ffffff;
         border: none;
-        font-weight: 600;
-        padding: 10px;
-        border-radius: 6px;
+        font-weight: 700;
+        padding: 12px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
         text-decoration: none;
-        margin-top: 12px;
+        margin-top: 14px;
         width: 100%;
         cursor: pointer;
         font-size: 13px;
