@@ -28,26 +28,27 @@
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <style>
     :root { 
-        /* রাজউক অফিশিয়াল স্থায়ী লাইট থিম ভেরিয়েবল */
-        --bg: #f3f6f4;
+        /* রাজউক মেইন পোর্টাল এক্স্যাক্ট কালার প্যালেট (নতুন ছবি অনুযায়ী) */
+        --bg: #f4f6f8;              /* হালকা নিট ব্যাকগ্রাউন্ড */
         --card-bg: #ffffff;
         --input-bg: #ffffff;
-        --text-main: #0a1f13;       /* সর্বোচ্চ স্পষ্টতার জন্য ডিপ বোল্ড টেক্সট */
-        --text-sub: #4f6356;
-        --border: #d0dad3;
-        --accent: #006a4e;          /* রাজউক অফিশিয়াল ডিপ গ্রিন */
-        --blue: #1e3a8a;            /* ইন্ডিগো/নেভি ব্লু */
-        --red: #dc2626;
-        --success: #16a34a;
-        --res-bg: #eff6ff;          /* ইন্ডিগো কার্ড ব্যাকগ্রাউন্ড */
-        --res-main-bg: #e8f5e9;     /* রাজউক গ্রিন প্রধান কার্ড ব্যাকগ্রাউন্ড */
-        --whatsapp: #059669;
+        --text-main: #1e293b;       /* সফট আই-ফ্রেন্ডলি টেক্সট */
+        --text-sub: #64748b;
+        --border: #e2e8f0;          /* ১px আল্ট্রা-চিকন বর্ডার */
+        --accent: #0d416b;          /* রাজউক পোর্টালে ব্যবহৃত মূল রয়্যাল ব্লু */
+        --accent-hover: #082d4b;
+        --accent-light: #eef5fb;    /* কার্ড ও বক্সে হালকা ব্লু টিন্ট */
+        --blue: #0284c7;
+        --red: #ef4444;
+        --success: #10b981;
+        --res-bg: #f8fafc;
+        --res-main-bg: #e0f2fe;     /* প্রধান ফলাফল কার্ডের জন্য লাইট সি-ব্লু */
     }
     
     #loader { 
         position: fixed; inset: 0; background: var(--bg); display: none; 
         justify-content: center; align-items: center; z-index: 99; 
-        color: var(--accent); font-weight: bold; 
+        color: var(--accent); font-weight: 500; 
     }
     
     #lock-screen { 
@@ -55,34 +56,34 @@
         text-align: center; padding: 20px 0; width: 100%; box-sizing: border-box; justify-content: center;
     }
     .box { 
-        background: var(--card-bg); padding: 25px; border-radius: 20px; 
-        border: 2px solid var(--accent); max-width: 360px; width: 100%; 
-        box-shadow: 0 10px 30px rgba(0,106,78,0.1); box-sizing: border-box; 
+        background: var(--card-bg); padding: 25px; border-radius: 10px; 
+        border: 1px solid var(--border); max-width: 360px; width: 100%; 
+        box-shadow: 0 2px 8px rgba(13, 65, 107, 0.05); box-sizing: border-box; 
     }
     
     .id-badge { 
-        background: rgba(0, 106, 78, 0.08); color: var(--accent); 
-        padding: 8px 15px; border-radius: 10px; font-weight: 800; 
-        font-size: 13px; display: inline-block; margin: 10px 0; border: 1.5px solid var(--accent); 
+        background: var(--accent-light); color: var(--accent); 
+        padding: 6px 12px; border-radius: 6px; font-weight: 600; 
+        font-size: 12px; display: inline-block; margin: 10px 0; border: 1px solid #cbd5e1; 
     }
     .payment-info { 
-        background: rgba(0, 106, 78, 0.04); border: 1.5px dashed var(--accent); 
-        padding: 12px; border-radius: 12px; margin: 10px 0; color: var(--accent); 
-        font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: bold;
+        background: #fafafa; border: 1px dashed var(--border); 
+        padding: 10px; border-radius: 8px; margin: 10px 0; color: var(--text-main); 
+        font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 500;
     }
     .copy-btn { 
-        background: var(--accent); border: none; padding: 6px 12px; 
-        border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; color: #ffffff; 
+        background: var(--accent); border: none; padding: 5px 10px; 
+        border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 12px; color: #ffffff; 
     }
     
     .styled-input { 
-        width: 100%; padding: 12px; margin: 6px 0; border-radius: 10px; 
-        border: 2px solid var(--border); background: #ffffff; color: #000000; 
-        box-sizing: border-box; outline: none; font-size: 15px; font-weight: 700;
+        width: 100%; padding: 10px; margin: 6px 0; border-radius: 6px; 
+        border: 1px solid var(--border); background: #ffffff; color: var(--text-main); 
+        box-sizing: border-box; outline: none; font-size: 14px; font-weight: 500;
     }
     
     body { 
-        font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hind Siliguri", sans-serif;
         background-color: var(--bg); 
         margin: 0; 
         padding: 20px; 
@@ -92,6 +93,7 @@
         box-sizing: border-box;
         color: var(--text-main); 
         font-size: 14px;
+        font-weight: 400;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -109,70 +111,76 @@
         50% { opacity: 0.3; color: var(--red); }
         100% { opacity: 1; color: var(--red); }
     }
-    .far-warning { animation: farBlink 0.6s infinite; }
+    .far-warning { animation: farBlink 0.8s infinite; }
     
     .container { max-width: 1000px; margin: 0 auto; }
 
     .app-header {
         display: flex; justify-content: space-between; align-items: center;
-        background: var(--card-bg); padding: 14px 25px; border-radius: 16px;
-        border: 1.5px solid var(--border); margin-bottom: 20px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        background: var(--accent); padding: 12px 20px; border-radius: 8px;
+        color: #ffffff; margin-bottom: 20px;
+        box-shadow: 0 2px 6px rgba(13, 65, 107, 0.1);
     }
-    .app-title { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 0.5px; }
+    .app-title { font-size: 18px; font-weight: 600; color: #ffffff; letter-spacing: 0.3px; }
 
     .btn-group { display: flex; gap: 8px; }
     .action-btn { 
-        padding: 8px 16px; border-radius: 8px; border: 1.5px solid var(--border);
-        background: #ffffff; color: var(--text-main); cursor: pointer;
-        font-size: 12px; font-weight: 800; transition: 0.2s;
+        padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.1); color: #ffffff; cursor: pointer;
+        font-size: 12px; font-weight: 500; transition: 0.2s;
     }
-    .action-btn:hover { border-color: var(--accent); background: var(--res-main-bg); color: var(--accent); }
+    .action-btn:hover { background: #ffffff; color: var(--accent); }
 
-    .tab-wrapper { display: flex; gap: 10px; margin-bottom: 15px; justify-content: center; }
+    .tab-wrapper { display: flex; gap: 8px; margin-bottom: 15px; justify-content: center; }
     .tab-btn { 
-        flex: 0 1 180px; padding: 12px; border: 1.5px solid var(--border); background: var(--card-bg);
-        color: var(--text-sub); font-weight: 800; cursor: pointer; border-radius: 12px; transition: 0.3s;
+        flex: 0 1 160px; padding: 10px; border: 1px solid var(--border); background: var(--card-bg);
+        color: var(--text-sub); font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.2s;
         font-size: 13px; text-transform: uppercase;
     }
-    .tab-btn.active { background: var(--accent); color: #ffffff; border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,106,78,0.25); }
+    .tab-btn.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
 
-    .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
 
+    /* ক্লিন স্লিম কার্ড */
     .card { 
-        background: var(--card-bg); border-radius: 20px; padding: 25px; 
-        border: 1.5px solid var(--border); display: flex; flex-direction: column;
-        box-sizing: border-box; position: relative; min-height: 530px; height: auto;
-        box-shadow: 0 4px 20px rgba(0, 106, 78, 0.04);
+        background: var(--card-bg); border-radius: 8px; padding: 20px; 
+        border: 1px solid var(--border); display: flex; flex-direction: column;
+        box-sizing: border-box; position: relative; min-height: auto; height: auto;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
     .card-title { 
-        font-size: 15px; color: var(--accent); margin-bottom: 20px; 
-        font-weight: 900; border-bottom: 2px solid var(--border); padding-bottom: 10px; 
-        text-transform: uppercase; letter-spacing: 0.5px;
+        font-size: 14px; color: var(--accent); margin-bottom: 16px; 
+        font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 8px; 
+        text-transform: uppercase; letter-spacing: 0.3px;
     }
 
-    .inp-box { margin-bottom: 15px; background: #ffffff; border: 2px solid var(--border); border-radius: 10px; padding: 10px 15px; position: relative; overflow: visible; }
-    .inp-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,106,78,0.12); }
-    .inp-box label { display: block; font-size: 10px; color: var(--text-sub); margin-bottom: 4px; text-transform: uppercase; font-weight: 800; }
-    .inp-box input, .logic-select { 
-        width: 100%; background: transparent; border: none; color: #000000; 
-        outline: none; font-size: 16px; font-weight: 800;
+    /* ইনপুট বক্স */
+    .inp-box { 
+        margin-bottom: 12px; background: #ffffff; 
+        border: 1px solid var(--border); border-radius: 6px; 
+        padding: 8px 12px; position: relative; overflow: visible; 
     }
-    .logic-select option { background: #ffffff; color: var(--text-main); font-weight: 600; }
+    .inp-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(13, 65, 107, 0.08); }
+    .inp-box label { display: block; font-size: 10px; color: var(--text-sub); margin-bottom: 3px; text-transform: uppercase; font-weight: 600; }
+    .inp-box input, .logic-select { 
+        width: 100%; background: transparent; border: none; color: var(--text-main); 
+        outline: none; font-size: 15px; font-weight: 600;
+    }
+    .logic-select option { background: #ffffff; color: var(--text-main); font-weight: 400; }
     
     .incentive-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-bottom: 10px;
+        gap: 8px;
+        margin-bottom: 8px;
     }
 
     .incentive-box {
-        background: var(--bg); 
-        padding: 15px; 
-        border-radius: 10px; 
+        background: var(--res-bg); 
+        padding: 12px; 
+        border-radius: 6px; 
         margin-top: 8px; 
-        border: 1.5px solid var(--border); 
+        border: 1px solid var(--border); 
         display: none;
     }
 
@@ -187,50 +195,50 @@
         max-height: 200px;
         overflow-y: auto;
         z-index: 1000;
-        border: 2px solid var(--accent);
-        border-radius: 8px;
-        margin-top: 5px;
+        border: 1px solid var(--accent);
+        border-radius: 6px;
+        margin-top: 4px;
         padding: 0;
         list-style: none;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
-    #searchSuggestions li { padding: 12px; cursor: pointer; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 700; color: var(--text-main); transition: 0.2s; }
-    #searchSuggestions li:hover { background: var(--res-main-bg); color: var(--accent); }
+    #searchSuggestions li { padding: 10px; cursor: pointer; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--text-main); transition: 0.15s; }
+    #searchSuggestions li:hover { background: var(--accent-light); color: var(--accent); }
 
-    .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex-grow: 1; }
+    .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex-grow: 1; }
     
-    /* ইন্ডিগো ব্লু কার্ডস (MGC, Storied, Units ইত্যাদির জন্য) */
+    /* হালকা রেজাল্ট কার্ডস */
     .res-item { 
-        background: var(--res-bg); border: 2px solid #bfdbfe; padding: 15px; 
-        border-radius: 14px; text-align: center; display: flex; flex-direction: column; justify-content: center;
+        background: var(--res-bg); border: 1px solid var(--border); padding: 12px; 
+        border-radius: 6px; text-align: center; display: flex; flex-direction: column; justify-content: center;
     }
-    .res-item span { font-size: 11px; color: #1e3a8a; display: block; margin-bottom: 5px; text-transform: uppercase; font-weight: 800; }
-    .res-item b { font-size: 22px; color: var(--blue); font-weight: 900; }
+    .res-item span { font-size: 11px; color: var(--text-sub); display: block; margin-bottom: 4px; text-transform: uppercase; font-weight: 600; }
+    .res-item b { font-size: 18px; color: var(--accent); font-weight: 600; }
     
-    /* রাজউক অফিশিয়াল গ্রিন কার্ড (TOTAL ALLOWABLE FLOOR AREA এর জন্য) */
+    /* হাইলাইট কার্ড (Allowable Area) */
     .highlight { 
-        grid-column: span 2; border: 2px solid #a5d6a7; background: var(--res-main-bg); 
+        grid-column: span 2; border: 1px solid #bae6fd; background: var(--res-main-bg); 
     }
-    .highlight span { color: #006a4e; }
-    .highlight b { font-size: 32px; color: var(--accent); font-weight: 900; }
+    .highlight span { color: #0369a1; }
+    .highlight b { font-size: 26px; color: var(--accent); font-weight: 700; }
 
     .collapse-header { 
-        background: var(--bg); padding: 12px; cursor: pointer; border-radius: 10px; 
-        margin-top: 8px; display: flex; justify-content: space-between; border: 1.5px solid var(--border); 
-        font-size: 13px; font-weight: 800; color: var(--text-main); 
+        background: var(--res-bg); padding: 10px; cursor: pointer; border-radius: 6px; 
+        margin-top: 8px; display: flex; justify-content: space-between; border: 1px solid var(--border); 
+        font-size: 12px; font-weight: 600; color: var(--text-main); 
     }
-    .collapse-header span { color: var(--text-main); font-weight: 800; }
+    .collapse-header span { color: var(--text-main); font-weight: 600; }
     
-    .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; margin-bottom: 8px; cursor: pointer; color: var(--text-main); }
-    .check-item input { width: 18px; height: 18px; accent-color: var(--accent); }
+    .check-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; margin-bottom: 6px; cursor: pointer; color: var(--text-main); }
+    .check-item input { width: 16px; height: 16px; accent-color: var(--accent); }
 
     .acc-body { display: none; margin-top: 5px; }
     .acc-body.show { display: block; }
     .block-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
-    .block-table th { font-size: 11px; color: var(--accent); text-align: left; padding: 8px; border-bottom: 2px solid var(--border); font-weight: 800; }
-    .block-table td { padding: 10px 8px; font-size: 12px; border-bottom: 1px solid var(--border); font-weight: 700; color: var(--text-main); }
+    .block-table th { font-size: 11px; color: var(--accent); text-align: left; padding: 6px; border-bottom: 1px solid var(--border); font-weight: 600; }
+    .block-table td { padding: 8px 6px; font-size: 12px; border-bottom: 1px solid var(--border); font-weight: 500; color: var(--text-main); }
 
-    .footer { text-align: center; padding: 30px; font-size: 12px; color: var(--text-sub); font-weight: 700; }
+    .footer { text-align: center; padding: 20px; font-size: 12px; color: var(--text-sub); font-weight: 400; }
 
     @media (max-width: 900px) { 
         .main-grid { grid-template-columns: 1fr; }
@@ -263,25 +271,25 @@
         }
 
         .card { 
-            border: 1.5px solid #000 !important; 
+            border: 1px solid #000 !important; 
             background: white !important; 
             min-height: auto !important; 
             padding: 10px !important; 
             margin: 0 !important;
             box-shadow: none !important;
-            border-radius: 8px !important;
+            border-radius: 6px !important;
         }
 
         .card-title { 
             font-size: 13px !important;
             color: black !important; 
-            border-bottom: 2px solid #000 !important; 
+            border-bottom: 1px solid #000 !important; 
             margin-bottom: 8px !important;
             padding-bottom: 4px !important;
         }
 
         .inp-box { 
-            padding: 5px 10px !important; 
+            padding: 5px 8px !important; 
             margin-bottom: 5px !important; 
             border: 1px solid #ccc !important;
             background: white !important;
@@ -295,8 +303,8 @@
             border: 1px solid #94a3b8 !important;
         }
 
-        .res-item b { font-size: 16px !important; color: #000000 !important; }
-        .highlight b { font-size: 22px !important; color: #006a4e !important; }
+        .res-item b { font-size: 15px !important; color: #000000 !important; }
+        .highlight b { font-size: 20px !important; color: #0d416b !important; }
 
         @page { 
             size: A4 portrait; 
@@ -313,44 +321,34 @@
     }
     
     input, button, select, textarea, #status-text {
-        font-family: 'Hind Siliguri', 'Segoe UI', sans-serif !important;
+        font-family: 'Hind Siliguri', -apple-system, sans-serif !important;
     }
     
-    /* Action Button (রাজউক গ্রিন থিম) */
+    /* অ্যাকশন বাটন */
     .btn-wa {
-        background: rgba(0, 106, 78, 0.08);
-        color: var(--accent);
-        border: 2px solid var(--accent);
-        font-weight: 800;
-        padding: 14px;
-        border-radius: 12px;
+        background: var(--accent);
+        color: #ffffff;
+        border: none;
+        font-weight: 600;
+        padding: 12px;
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
         text-decoration: none;
         margin-top: 15px;
         width: 100%;
         cursor: pointer;
-        font-size: 15px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0, 106, 78, 0.1);
-        font-family: 'Hind Siliguri', sans-serif !important;
+        font-size: 14px;
+        transition: all 0.2s ease;
     }
 
     .btn-wa:hover {
-        background: var(--accent);
-        color: #ffffff;
-        border-color: var(--accent);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 106, 78, 0.25);
+        background: var(--accent-hover);
     }
 
-    .btn-wa:active {
-        transform: translateY(0);
-    }
-
-    #singleCardResult::-webkit-scrollbar { width: 5px; }
+    #singleCardResult::-webkit-scrollbar { width: 4px; }
     #singleCardResult::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 </style>
 </head>
