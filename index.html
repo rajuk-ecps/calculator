@@ -28,7 +28,7 @@
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 	
     <style>
-        :root { 
+       :root { 
     --bg: #eaf2f8; 
     --card-bg: #ffffff; 
     --primary: #0f4c81;       
@@ -126,24 +126,6 @@
     box-sizing: border-box; 
     outline: none; 
     font-size: 14px; 
-}
-
-.btn-wa { 
-    background: rgba(15, 76, 129, 0.1); 
-    color: var(--primary); 
-    padding: 14px; 
-    border-radius: 12px; 
-    font-weight: bold; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 10px; 
-    text-decoration: none; 
-    margin-top: 15px; 
-    border: 1px solid var(--primary); 
-    width: 100%; 
-    cursor: pointer; 
-    font-size: 16px; 
 }
 
 body.light-mode {
@@ -296,7 +278,7 @@ input, textarea {
 
 .inputs-grid-wrapper {
     display: grid;
-    grid-template-columns: 1fr; /* ডেস্কটপে যেমন ছিল তেমনই থাকবে */
+    grid-template-columns: 1fr;
     gap: 0;
 }
 
@@ -472,27 +454,6 @@ input, textarea {
     display: block; 
 }
 
-.block-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-    margin-top: 5px; 
-}
-
-.block-table th { 
-    font-size: 10px; 
-    color: var(--primary); 
-    text-align: left; 
-    padding: 6px; 
-    border-bottom: 1px solid var(--border); 
-}
-
-.block-table td { 
-    padding: 8px 6px; 
-    font-size: 10px; 
-    border-bottom: 1px solid var(--border); 
-    color: var(--text-main); 
-}
-
 .footer { 
     text-align: center; 
     padding: 30px; 
@@ -528,7 +489,7 @@ input, textarea {
         margin-bottom: 8px;
         padding-bottom: 5px;
     }
-    /* মোবাইল ভিউতে ইনপুটগুলো পাশাপাশি দুই কলামে দেখাবে যেন স্ক্রোল কমে যায় */
+    /* মোবাইল স্ক্রিনে ইনপুটগুলো পাশাপাশি দুই কলাম করে দেবে */
     .inputs-grid-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -676,128 +637,130 @@ input, button, select, textarea, #status-text {
     <div id="loader">যাচাই করা হচ্ছে...</div>
 
     <div class="container" id="main-app" style="display:none;">
-        <div id="trialInfo" style="text-align: center; color: #f59e0b; font-weight: bold; margin: 10px 0; font-size: 14px;"></div>
-        
-        <div class="app-header">
-            <div class="app-title">RAJUK FAR 2025</div>
-            <div class="btn-group">
-                <button class="action-btn" onclick="window.print()">🖨️ Print</button>
-                <button class="action-btn" onclick="copySummary()">📋 Summary</button>
-                <button class="action-btn" style="color: #FFFFFF; border-color:rgba(37, 211, 102, 0.3);" onclick="window.open('https://wa.me/8801601499664?text=Hello,%20I%20need%20consultation%20regarding%20RAJUK%20FAR%202025.')">
-   				<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 14px; vertical-align: middle; margin-right: 5px;">Consult</button>
-            </div>
+    <div id="trialInfo" style="text-align: center; color: #f59e0b; font-weight: bold; margin: 10px 0; font-size: 14px;"></div>
+    
+    <div class="app-header">
+        <div class="app-title">RAJUK FAR 2025</div>
+        <div class="btn-group">
+            <button class="action-btn" onclick="window.print()">🖨️ Print</button>
+            <button class="action-btn" onclick="copySummary()">📋 Summary</button>
+            <button class="action-btn" style="color: #FFFFFF; border-color:rgba(37, 211, 102, 0.3);" onclick="window.open('https://wa.me/8801601499664?text=Hello,%20I%20need%20consultation%20regarding%20RAJUK%20FAR%202025.')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 14px; vertical-align: middle; margin-right: 5px;">Consult</button>
         </div>
+    </div>
 
-        <div class="tab-wrapper">
-            <button class="tab-btn active" id="btn1" onclick="switchTab('calcTab', 'btn1')">Storied (Manual)</button>
-            <button class="tab-btn" id="btn2" onclick="switchTab('logicTab', 'btn2')">FAR (auto)</button>
-        </div>
+    <div class="tab-wrapper">
+        <button class="tab-btn active" id="btn1" onclick="switchTab('calcTab', 'btn1')">Storied (Manual)</button>
+        <button class="tab-btn" id="btn2" onclick="switchTab('logicTab', 'btn2')">FAR (auto)</button>
+    </div>
 
-        <div id="calcTab" class="main-grid">
-            <div class="card">
-                <div class="card-title">Primary Parameters</div>
+    <div id="calcTab" class="main-grid">
+        <div class="card">
+            <div class="card-title">Primary Parameters</div>
+            <div class="inputs-grid-wrapper">
                 <div class="inp-box"><label>Land Area (Katha)</label><input type="number" id="A" placeholder="0" oninput="runCalculation(true)"></div>
                 <div class="inp-box"><label>Road Widening (Sft)</label><input type="number" id="B" placeholder="0" oninput="runCalculation()"></div>
                 <div class="inp-box"><label>Allowable FAR</label><input type="number" id="D" step="any" placeholder="0" oninput="runCalculation()"></div>
                 <div class="inp-box"><label>Density</label><input type="number" id="G" placeholder="0" oninput="runCalculation()"></div>
-                <div class="inp-box" style="border-color:var(--accent);"><label>Minimum MGC (%)</label><input type="number" id="I_val" placeholder="0" oninput="runCalculation()"></div>
-                <button class="action-btn" style="width:100%; margin-top:5px; border-color:var(--red); color:var(--red);" onclick="resetCalculator()">🔄 Reset</button>
+                <div class="inp-box" style="border-color:var(--accent); grid-column: span 2;"><label>Minimum MGC (%)</label><input type="number" id="I_val" placeholder="0" oninput="runCalculation()"></div>
             </div>
-
-            <div class="card">
-                <div class="card-title">Calculation Summary</div>
-                <div class="res-grid">
-                    <div class="res-item"><span>Net Land Area</span><b id="resC">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
-                    <div class="res-item"><span>Road Incentive</span><b id="resF">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
-                    <div class="res-item"><span>Max Ground Coverage</span><b id="resJ">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
-                    <div class="res-item"><span>Total Units</span><b id="resH">0.00</b><small style="font-size:9px; opacity:0.6">Nos</small></div>
-                    <div class="res-item highlight"><span>Total Allowable Floor Area</span><b id="resE">0.00</b><small style="font-size:10px; opacity:0.6">Sft</small></div>
-                    <div class="res-item highlight" style="border-color:var(--blue)"><span>Total Number Of Storied</span><b id="resK" style="color:var(--blue)">0.00</b></div>
-                </div>
-            </div>
+            <button class="action-btn" style="width:100%; margin-top:5px; border-color:var(--red); color:var(--red);" onclick="resetCalculator()">🔄 Reset</button>
         </div>
 
-        <div id="lock-screen">
-            <div class="box" style="margin: 0 auto;">
-                <h2 style="color: var(--accent); margin: 0;">রাজউক ফার ২০২৫</h2>
-                <p id="status-text" style="font-size: 13px; color: #94a3b8; margin: 5px 0;">এক্সেস প্রয়োজন।</p>
-                
-                <div class="id-badge" id="displayNewID">User ID: Loading...</div>
-
-                <div class="payment-info">
-                    <span>বিকাশ: <b>01712402974</b></span>
-                    <button onclick="copyNumber()" class="copy-btn">Copy</button>
-                </div>
-                <p style="color: #f59e0b; font-size: 0.7rem; margin-top: 10px; display: none !important;">* পেমেন্টের সময় Reference-এ আপনার User ID লিখুন</p>
-                
-                <input type="text" id="userName" placeholder="আপনার নাম *" class="styled-input">
-                <input type="number" id="userPhone" placeholder="মোবাইল নাম্বর *" class="styled-input">
-
-                <button onclick="sendSubscriptionRequest()" id="submitBtn" class="btn-wa">হোয়াটসঅ্যাপে মেসেজ পাঠান</button>
+        <div class="card">
+            <div class="card-title">Calculation Summary</div>
+            <div class="res-grid">
+                <div class="res-item"><span>Net Land Area</span><b id="resC">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
+                <div class="res-item"><span>Road Incentive</span><b id="resF">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
+                <div class="res-item"><span>Max Ground Coverage</span><b id="resJ">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
+                <div class="res-item"><span>Total Units</span><b id="resH">0.00</b><small style="font-size:9px; opacity:0.6">Nos</small></div>
+                <div class="res-item highlight"><span>Total Allowable Floor Area</span><b id="resE">0.00</b><small style="font-size:10px; opacity:0.6">Sft</small></div>
+                <div class="res-item highlight" style="border-color:var(--blue)"><span>Total Number Of Storied</span><b id="resK" style="color:var(--blue)">0.00</b></div>
             </div>
         </div>
+    </div>
 
-        <div id="logicTab" class="main-grid" style="display:none;">
-            <div class="card">
-                <div class="card-title">Input Filters</div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                    <div class="inp-box"><label>Land Zone</label><select id="landZone" class="logic-select" onchange="updateRoadOptions()"><option value="Central">Central Dhaka</option><option value="Outer">Outer Areas</option><option value="Others">Other Areas</option></select></div>
-                    <div class="inp-box"><label>Occupancy Type</label><select id="occupancy" class="logic-select" onchange="updateRoadOptions()"><option value="1.0" selected>(A3)-Apartment & Flat</option><option value="1.1">(A6)-Affordable Housing</option></select></div>
-                </div>
-                <div class="inp-box"><label>Land Area (Katha)</label><input type="number" id="kathaLogic" placeholder="0" oninput="syncKatha(); calcLogic();"></div>
+    <div id="lock-screen">
+        <div class="box" style="margin: 0 auto;">
+            <h2 style="color: var(--accent); margin: 0;">রাজউক ফার ২০২৫</h2>
+            <p id="status-text" style="font-size: 13px; color: #94a3b8; margin: 5px 0;">এক্সেস প্রয়োজন।</p>
+            
+            <div class="id-badge" id="displayNewID">User ID: Loading...</div>
+
+            <div class="payment-info">
+                <span>বিকাশ: <b>01712402974</b></span>
+                <button onclick="copyNumber()" class="copy-btn">Copy</button>
+            </div>
+            <p style="color: #f59e0b; font-size: 0.7rem; margin-top: 10px; display: none !important;">* পেমেন্টের সময় Reference-এ আপনার User ID লিখুন</p>
+            
+            <input type="text" id="userName" placeholder="আপনার নাম *" class="styled-input">
+            <input type="number" id="userPhone" placeholder="মোবাইল নাম্বর *" class="styled-input">
+
+            <button onclick="sendSubscriptionRequest()" id="submitBtn" class="btn-wa">হোয়াটসঅ্যাপে মেসেজ পাঠান</button>
+        </div>
+    </div>
+
+    <div id="logicTab" class="main-grid" style="display:none;">
+        <div class="card">
+            <div class="card-title">Input Filters</div>
+            <div class="inputs-grid-wrapper">
+                <div class="inp-box"><label>Land Zone</label><select id="landZone" class="logic-select" onchange="updateRoadOptions()"><option value="Central">Central Dhaka</option><option value="Outer">Outer Areas</option><option value="Others">Other Areas</option></select></div>
+                <div class="inp-box"><label>Occupancy Type</label><select id="occupancy" class="logic-select" onchange="updateRoadOptions()"><option value="1.0" selected>(A3)-Apartment & Flat</option><option value="1.1">(A6)-Affordable Housing</option></select></div>
+                <div class="inp-box" style="grid-column: span 2;"><label>Land Area (Katha)</label><input type="number" id="kathaLogic" placeholder="0" oninput="syncKatha(); calcLogic();"></div>
                 <div class="inp-box"><label>Existing Road</label><select id="exRoad" class="logic-select" onchange="calcLogic()"></select></div>
                 <div class="inp-box"><label>Proposed Road</label><select id="prRoad" class="logic-select" onchange="calcLogic()"></select></div>
-                
-                <div class="collapse-header" onclick="toggleIncentive()">
-                    <span>OTHERS INCENTIVE</span>
-                    <span>▼</span>
+            </div>
+            
+            <div class="collapse-header" onclick="toggleIncentive()">
+                <span>OTHERS INCENTIVE</span>
+                <span>▼</span>
+            </div>
+            <div id="incentive-content" class="incentive-box">
+                <div class="incentive-grid">
+                    <label class="check-item"><input type="checkbox" id="school" onchange="calcLogic()"> School (+0.25)</label>
+                    <label class="check-item"><input type="checkbox" id="park" onchange="calcLogic()"> Park (+0.25)</label>
+                    <label class="check-item"><input type="checkbox" id="green" onchange="calcLogic()"> Green Building (+0.50)</label>
+                    <label class="check-item"><input type="checkbox" id="public" onchange="calcLogic()"> Public Space (+0.50)</label>
+                    <label class="check-item"><input type="checkbox" id="a6_inc" onchange="calcLogic()"> A6 (10 Katha) (+0.50)</label>
+                    <label class="check-item"><input type="checkbox" id="a6_inc2" onchange="calcLogic()"> A6 (20 Katha) (+0.75)</label>
+                    <label class="check-item" style="grid-column: span 2;"><input type="checkbox" id="road_chk" onchange="toggleRoadInput()"> Road > 30ft</label>
                 </div>
-                <div id="incentive-content" class="incentive-box">
-                    <div class="incentive-grid">
-                        <label class="check-item"><input type="checkbox" id="school" onchange="calcLogic()"> School (+0.25)</label>
-                        <label class="check-item"><input type="checkbox" id="park" onchange="calcLogic()"> Park (+0.25)</label>
-                        <label class="check-item"><input type="checkbox" id="green" onchange="calcLogic()"> Green Building (+0.50)</label>
-                        <label class="check-item"><input type="checkbox" id="public" onchange="calcLogic()"> Public Space (+0.50)</label>
-                        <label class="check-item"><input type="checkbox" id="a6_inc" onchange="calcLogic()"> A6 (10 Katha) (+0.50)</label>
-                        <label class="check-item"><input type="checkbox" id="a6_inc2" onchange="calcLogic()"> A6 (20 Katha) (+0.75)</label>
-                        <label class="check-item"><input type="checkbox" id="road_chk" onchange="toggleRoadInput()"> Road > 30ft</label>
-                    </div>
-                    <input type="number" id="roadFeet" class="logic-select" style="display:none; border:1px solid var(--accent); margin-top:5px; padding:8px; border-radius:10px;" placeholder="Actual Road Width" oninput="calcLogic()">
-                </div>
-
-                <div class="collapse-header" onclick="toggleAcc('blockAcc')" style="margin-top:10px; color: var(--accent);"><span>BLOCK DEVELOPMENT</span><span>▼</span></div>
-                <div id="blockAcc" class="acc-body incentive-box">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <label class="check-item"><input type="checkbox" id="b1" onchange="calcLogic()"> Old Dhaka (+.50)</label>
-                        <label class="check-item"><input type="checkbox" id="b2" onchange="calcLogic()"> 20K-2Ac (+.50)</label>
-                        <label class="check-item"><input type="checkbox" id="b3" onchange="calcLogic()"> 2-5 Ac (+.75)</label>
-                        <label class="check-item"><input type="checkbox" id="b4" onchange="calcLogic()"> 5Ac+ (+1.0)</label>
-                    </div>
-                </div>
+                <input type="number" id="roadFeet" class="logic-select" style="display:none; border:1px solid var(--accent); margin-top:5px; padding:8px; border-radius:10px;" placeholder="Actual Road Width" oninput="calcLogic()">
             </div>
 
-            <div class="card">
-                <div class="card-title">Final FAR & Block Limits</div>
+            <div class="collapse-header" onclick="toggleAcc('blockAcc')" style="margin-top:10px; color: var(--accent);"><span>BLOCK DEVELOPMENT</span><span>▼</span></div>
+            <div id="blockAcc" class="acc-body incentive-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <label class="check-item"><input type="checkbox" id="b1" onchange="calcLogic()"> Old Dhaka (+.50)</label>
+                    <label class="check-item"><input type="checkbox" id="b2" onchange="calcLogic()"> 20K-2Ac (+.50)</label>
+                    <label class="check-item"><input type="checkbox" id="b3" onchange="calcLogic()"> 2-5 Ac (+.75)</label>
+                    <label class="check-item"><input type="checkbox" id="b4" onchange="calcLogic()"> 5Ac+ (+1.0)</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Final FAR & Block Limits</div>
+            <div class="inputs-grid-wrapper" style="grid-template-columns: 1fr;">
                 <div class="inp-box" style="margin-bottom: 5px; position: relative;">
                     <label>Area Far & Density</label>
                     <input type="text" id="searchInp" placeholder="Search Ward no, Block No, Union etc" oninput="filterSearch()" autocomplete="off">
                     <ul id="searchSuggestions"></ul>
                 </div>
-                <div id="singleCardResult"></div>
-				<div id="singleCardResult" style="width: 100%; margin-top: 10px;"></div>
-                
-                <div class="res-item highlight" style="margin-top:15px; cursor:pointer;" onclick="setFarToCalc()">
-                    <span style="color:var(--success)">FINAL ALLOWABLE FAR</span>
-                    <b id="fFar" style="color:var(--success); font-size:25px;">0.00</b>
-                    <p style="font-size:10px; opacity:0.9; margin-top:8px;">CLICK HERE TO GET RESULT</p>
-                </div>
-                
-                <div style="margin-top:auto; border-top:1px solid var(--border); padding-top:15px;">
-                    <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Base FAR:</span><span id="bFar">0.00</span></div>
-                    <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Land Incentive Far:</span><span id="lInc">0.00</span></div>
-                    <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Others Incentive Far:</span><span id="oInc">0.00</span></div>
-                    <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:bold; color:var(--accent);"><span>Highest Far:</span><span id="totalFarDisp">0.00</span></div>
-                </div>
+            </div>
+            <div id="singleCardResult" style="width: 100%; margin-top: 10px;"></div>
+            
+            <div class="res-item highlight" style="margin-top:15px; cursor:pointer;" onclick="setFarToCalc()">
+                <span style="color:var(--success)">FINAL ALLOWABLE FAR</span>
+                <b id="fFar" style="color:var(--success); font-size:25px;">0.00</b>
+                <p style="font-size:10px; opacity:0.9; margin-top:8px;">CLICK HERE TO GET RESULT</p>
+            </div>
+            
+            <div style="margin-top:auto; border-top:1px solid var(--border); padding-top:15px;">
+                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Base FAR:</span><span id="bFar">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Land Incentive Far:</span><span id="lInc">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Others Incentive Far:</span><span id="oInc">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:bold; color:var(--accent);"><span>Highest Far:</span><span id="totalFarDisp">0.00</span></div>
             </div>
         </div>
     </div>
