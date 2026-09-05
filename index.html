@@ -150,18 +150,12 @@ body.light-mode {
 
 body { 
     font-family: 'Hind Siliguri', 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--bg) !important; 
+    background-color: var(--primary) !important; /* বডির ব্যাকগ্রাউন্ড নীল রাখা হলো যাতে স্ট্যাটাস বারের সাথে ম্যাচ করে */
     margin: 0; 
-    padding: 15px; 
+    padding: 0 !important;
     min-height: 100vh;
     box-sizing: border-box;
     color: var(--text-main); 
-    transition: background 0.3s ease, color 0.3s ease;
-    font-size: 14px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 input, textarea {
@@ -186,6 +180,13 @@ input, button, select, textarea {
 .container { 
     max-width: 1000px; 
     margin: 0 auto; 
+    padding: 15px;
+    padding-top: max(20px, env(safe-area-inset-top)); /* স্ট্যাটাস বার বা নচের জায়গা খালি রাখবে */
+    background-color: var(--bg); /* মূল অ্যাপের হালকা ব্যাকগ্রাউন্ড */
+    min-height: 100vh;
+    box-sizing: border-box;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 /* প্রফেশনাল অ্যাপ হেডার ও স্ট্যাটাস বার ব্লেন্ডিং */
