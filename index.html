@@ -60,7 +60,7 @@
     flex-direction: column; 
     align-items: center; 
     text-align: center; 
-    padding: 10px 0; 
+    padding: 20px 0; 
     width: 100%; 
     box-sizing: border-box; 
     justify-content: center;
@@ -68,8 +68,8 @@
 
 .box { 
     background: var(--card-bg); 
-    padding: 20px; 
-    border-radius: 20px; 
+    padding: 25px; 
+    border-radius: 24px; 
     border: 2px solid var(--primary); 
     max-width: 360px; 
     width: 100%; 
@@ -80,23 +80,23 @@
 .id-badge { 
     background: rgba(15, 76, 129, 0.1); 
     color: var(--primary); 
-    padding: 6px 12px; 
-    border-radius: 8px; 
+    padding: 8px 15px; 
+    border-radius: 10px; 
     font-weight: bold; 
-    font-size: 12px; 
+    font-size: 13px; 
     display: inline-block; 
-    margin: 8px 0; 
+    margin: 10px 0; 
     border: 1px solid var(--primary); 
 }
 
 .payment-info { 
     background: rgba(15, 76, 129, 0.05); 
     border: 1px dashed var(--primary); 
-    padding: 10px; 
-    border-radius: 10px; 
-    margin: 8px 0; 
+    padding: 12px; 
+    border-radius: 12px; 
+    margin: 10px 0; 
     color: var(--primary); 
-    font-size: 13px; 
+    font-size: 14px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -106,32 +106,32 @@
 .copy-btn { 
     background: var(--primary); 
     border: none; 
-    padding: 4px 8px; 
+    padding: 5px 10px; 
     border-radius: 5px; 
     cursor: pointer; 
     font-weight: bold; 
-    font-size: 11px; 
+    font-size: 12px; 
     color: #ffffff; 
 }
     
 .styled-input { 
     width: 100%; 
-    padding: 10px; 
-    margin: 5px 0; 
-    border-radius: 8px; 
+    padding: 12px; 
+    margin: 6px 0; 
+    border-radius: 10px; 
     border: 1px solid var(--border); 
     background: var(--input-bg); 
     color: var(--text-main); 
     box-sizing: border-box; 
     outline: none; 
-    font-size: 13px; 
+    font-size: 14px; 
 }
 
 body { 
     font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
     background-color: #eaf2f8 !important; 
     margin: 0; 
-    padding: 15px; 
+    padding: 20px; 
     min-height: 100vh;
     box-sizing: border-box;
     color: var(--text-main); 
@@ -146,66 +146,86 @@ input, textarea {
 .container { 
     max-width: 1000px; 
     margin: 0 auto; 
+    padding-bottom: 20px;
 }
 
+/* ক্লিন হেডার স্টাইল */
 .app-header {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
     background: var(--primary); 
-    padding: 10px 20px; 
-    border-radius: 12px;
-    margin-bottom: 12px;
+    padding: 15px 25px; 
+    border-radius: 15px;
+    margin-bottom: 15px;
     box-shadow: 0 4px 15px rgba(15, 76, 129, 0.2);
+    text-align: center;
 }
 
 .app-title { 
-    font-size: 16px; 
+    font-size: 20px; 
     font-weight: 800; 
     color: #ffffff; 
-    letter-spacing: 0.5px; 
+    letter-spacing: 1px; 
 }
 
-.btn-group { 
-    display: flex; 
-    gap: 6px; 
+/* কম্বাইন্ড একশন প্যানেল (রিসেট ও অন্যান্য বাটন একসাথে) */
+.combined-action-panel {
+    margin-top: auto;
+    padding-top: 10px;
 }
 
-.action-btn { 
-    padding: 6px 12px; 
-    border-radius: 6px; 
-    border: 1px solid rgba(255,255,255,0.25);
-    background: rgba(255,255,255,0.12); 
-    color: #ffffff; 
+.bottom-btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.action-card-btn {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 11px;
     cursor: pointer;
-    font-size: 11px; 
-    font-weight: bold; 
     transition: 0.2s;
+    text-align: center;
 }
 
-.action-btn:hover { 
-    border-color: #ffffff; 
-    background: #ffffff; 
-    color: var(--primary); 
+.action-card-btn:hover {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+}
+
+.wa-btn-inline {
+    color: #059669;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.wa-btn-inline:hover {
+    background: #10b981 !important;
+    color: #ffffff !important;
+    border-color: #10b981 !important;
 }
 
 .tab-wrapper { 
     display: flex; 
-    gap: 8px; 
-    margin-bottom: 10px; 
+    gap: 10px; 
+    margin-bottom: 15px; 
     justify-content: center; 
 }
 
 .tab-btn { 
-    flex: 0 1 160px; 
-    padding: 10px; 
+    flex: 0 1 180px; 
+    padding: 12px; 
     border: 1px solid var(--border); 
     background: var(--card-bg);
     color: var(--text-sub); 
     font-weight: bold; 
     cursor: pointer; 
-    border-radius: 10px; 
-    font-size: 12px; 
+    border-radius: 12px; 
+    font-size: 13px; 
     text-transform: uppercase;
 }
 
@@ -218,14 +238,14 @@ input, textarea {
 .main-grid { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 15px; 
+    gap: 20px; 
     align-items: stretch; 
 }
 
 .card { 
     background: var(--card-bg); 
-    border-radius: 16px; 
-    padding: 18px; 
+    border-radius: 20px; 
+    padding: 25px; 
     border: 1px solid var(--border); 
     display: flex; 
     flex-direction: column;
@@ -235,40 +255,44 @@ input, textarea {
 }
 
 .card-title { 
-    font-size: 13px; 
+    font-size: 14px; 
     color: var(--primary); 
-    margin-bottom: 12px; 
+    margin-bottom: 20px; 
     font-weight: bold; 
     border-bottom: 2px solid var(--primary); 
-    padding-bottom: 6px; 
+    padding-bottom: 10px; 
     text-transform: uppercase;
 }
 
-/* কমন গ্রিড লেআউট যা ডেস্কটপ এবং মোবাইল উভয়ের জন্য অপ্টিমাইজড */
 .inputs-grid-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 0;
 }
 
 .span-2 {
-    grid-column: span 2;
+    grid-column: span 1;
 }
 
 .inp-box { 
-    margin-bottom: 0; 
+    margin-bottom: 15px; 
     background: var(--input-bg); 
     border: 1px solid var(--border); 
-    border-radius: 8px; 
-    padding: 8px 12px; 
+    border-radius: 10px; 
+    padding: 10px 15px; 
     position: relative; 
+}
+
+.mgc-highlight {
+    border: 1.5px solid var(--primary);
+    background: rgba(15, 76, 129, 0.03);
 }
 
 .inp-box label { 
     display: block; 
-    font-size: 8.5px; 
+    font-size: 9px; 
     color: var(--text-sub); 
-    margin-bottom: 2px; 
+    margin-bottom: 4px; 
     text-transform: uppercase; 
     font-weight: bold; 
 }
@@ -279,7 +303,7 @@ input, textarea {
     border: none; 
     color: var(--text-main); 
     outline: none; 
-    font-size: 14px; 
+    font-size: 15px; 
     font-weight: 600;
 }
 
@@ -291,15 +315,15 @@ input, textarea {
 .incentive-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .incentive-box {
     background: var(--input-bg); 
-    padding: 10px; 
+    padding: 15px; 
     border-radius: 8px; 
-    margin-top: 6px; 
+    margin-top: 8px; 
     border: 1px solid var(--border); 
     display: none; 
 }
@@ -311,12 +335,12 @@ input, textarea {
     width: 100%;            
     box-sizing: border-box;  
     background: var(--card-bg);
-    max-height: 160px;
+    max-height: 150px;
     overflow-y: auto;
     z-index: 1000;
     border: 1.5px solid var(--primary);
     border-radius: 8px;
-    margin-top: 4px;
+    margin-top: 5px;
     padding: 0;
     list-style: none;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -338,15 +362,15 @@ input, textarea {
 .res-grid { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 10px; 
+    gap: 22px; 
     flex-grow: 1; 
 }
 
 .res-item { 
     background: var(--input-bg); 
     border: 1px solid var(--border); 
-    padding: 10px; 
-    border-radius: 10px; 
+    padding: 15px; 
+    border-radius: 12px; 
     text-align: center; 
     display: flex; 
     flex-direction: column; 
@@ -354,20 +378,21 @@ input, textarea {
 }
 
 .res-item span { 
-    font-size: 9px; 
+    font-size: 10px; 
     color: var(--text-sub); 
     display: block; 
-    margin-bottom: 3px; 
+    margin-bottom: 5px; 
     text-transform: uppercase; 
     font-weight: 700; 
 }
 
 .res-item b { 
-    font-size: 18px; 
+    font-size: 20px; 
     color: var(--text-main); 
 }
     
 .highlight { 
+    grid-column: span 2; 
     border: 1px solid var(--primary); 
     background: rgba(15, 76, 129, 0.04); 
 }
@@ -378,20 +403,20 @@ input, textarea {
 }
 
 .highlight b { 
-    font-size: 24px; 
+    font-size: 30px; 
     color: var(--primary); 
 }
 
 .collapse-header { 
     background: var(--input-bg); 
-    padding: 10px; 
+    padding: 12px; 
     cursor: pointer; 
     border-radius: 8px; 
-    margin-top: 6px; 
+    margin-top: 8px; 
     display: flex; 
     justify-content: space-between; 
     border: 1px solid var(--border); 
-    font-size: 11px; 
+    font-size: 12px; 
     font-weight: bold; 
 }
 
@@ -402,21 +427,21 @@ input, textarea {
 .check-item { 
     display: flex; 
     align-items: center; 
-    gap: 8px; 
-    font-size: 11px; 
+    gap: 10px; 
+    font-size: 12px; 
     cursor: pointer; 
     color: var(--text-main); 
 }
 
 .check-item input { 
-    width: 14px; 
-    height: 14px; 
+    width: 16px; 
+    height: 16px; 
     accent-color: var(--primary); 
 }
 
 .acc-body { 
     display: none; 
-    margin-top: 4px; 
+    margin-top: 5px; 
 }
 
 .acc-body.show { 
@@ -425,40 +450,46 @@ input, textarea {
 
 .footer { 
     text-align: center; 
-    padding: 15px; 
-    font-size: 10px; 
+    padding: 20px; 
+    font-size: 11px; 
     color: var(--text-sub); 
 }
 
 .reset-btn {
     width: 100%; 
-    margin-top: 10px; 
-    border-color: var(--red); 
-    color: var(--red);
-    background: transparent;
+    margin-top: 8px; 
+    border: 1.5px solid var(--red) !important; 
+    color: var(--red) !important;
+    background: rgba(239, 68, 68, 0.03) !important;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .reset-btn:hover {
-    background: var(--red);
-    color: #ffffff;
-    border-color: var(--red);
+    background: var(--red) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
-/* মোবাইল ও ছোট স্ক্রিনের জন্য রেসপন্সিভ সিঙ্গেল পেজ অ্যাডজাস্টমেন্ট */
 @media (max-width: 900px) { 
     body {
         padding: 8px;
+        padding-bottom: 70px;
     }
     .main-grid { 
         grid-template-columns: 1fr; 
         gap: 10px; 
     }
     .app-header { 
-        padding: 8px 12px; 
+        padding: 10px; 
         margin-bottom: 10px;
     }
     .app-title {
-        font-size: 14px;
+        font-size: 15px;
     }
     .card { 
         padding: 12px; 
@@ -467,12 +498,54 @@ input, textarea {
         font-size: 12px;
         margin-bottom: 8px;
     }
+    .inputs-grid-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+    .span-2 {
+        grid-column: span 2;
+    }
+    .inp-box {
+        margin-bottom: 0 !important;
+        padding: 6px 10px;
+    }
+    .inp-box label {
+        font-size: 8px;
+        margin-bottom: 2px;
+    }
+    .inp-box input, .logic-select {
+        font-size: 13px;
+    }
+    
+    .top-tabs {
+        display: none !important;
+    }
+    .bottom-tabs-mobile {
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--card-bg);
+        padding: 10px 15px;
+        box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        z-index: 999;
+        margin: 0;
+        gap: 10px;
+        border-top: 1px solid var(--border);
+    }
+    .bottom-tabs-mobile .tab-btn {
+        flex: 1;
+        padding: 10px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
 }
 
 @media print {
     .app-header, .tab-wrapper, .action-btn, .footer, 
-    .collapse-header, #incentive-content, .btn-group, 
-    #searchSuggestions { 
+    .collapse-header, #incentive-content, .bottom-btn-row, 
+    #searchSuggestions, .bottom-tabs-mobile { 
         display: none !important; 
     }
 
@@ -524,9 +597,6 @@ input, textarea {
 }
 
 #singleCardResult {
-    max-height: 100px; 
-    overflow-y: auto;  
-    margin-top: 4px;
     scrollbar-width: thin;
     scrollbar-color: var(--primary) transparent;
 }
@@ -540,14 +610,14 @@ input, button, select, textarea, #status-text {
     color: var(--primary);
     border: 1px solid var(--primary);
     font-weight: bold;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     text-decoration: none;
-    margin-top: 10px;
+    margin-top: 12px;
     width: 100%;
     cursor: pointer;
     font-size: 14px;
@@ -568,17 +638,13 @@ input, button, select, textarea, #status-text {
     <div class="container" id="main-app" style="display:none;">
     <div id="trialInfo" style="text-align: center; color: #f59e0b; font-weight: bold; margin: 10px 0; font-size: 14px;"></div>
     
+    <!-- ক্লিন হেডার (শুধু টাইটেল) -->
     <div class="app-header">
         <div class="app-title">RAJUK FAR 2025</div>
-        <div class="btn-group">
-            <button class="action-btn" onclick="window.print()">🖨️ Print</button>
-            <button class="action-btn" onclick="copySummary()">📋 Summary</button>
-            <button class="action-btn" style="color: #FFFFFF; border-color:rgba(37, 211, 102, 0.3);" onclick="window.open('https://wa.me/8801601499664?text=Hello,%20I%20need%20consultation%20regarding%20RAJUK%20FAR%202025.')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 14px; vertical-align: middle; margin-right: 5px;">Consult</button>
-        </div>
     </div>
 
-    <div class="tab-wrapper">
+    <!-- ডেস্কটপ ট্যাব -->
+    <div class="tab-wrapper top-tabs">
         <button class="tab-btn active" id="btn1" onclick="switchTab('calcTab', 'btn1')">Storied (Manual)</button>
         <button class="tab-btn" id="btn2" onclick="switchTab('logicTab', 'btn2')">FAR (auto)</button>
     </div>
@@ -591,9 +657,20 @@ input, button, select, textarea, #status-text {
                 <div class="inp-box"><label>Road Widening (Sft)</label><input type="number" id="B" placeholder="0" oninput="runCalculation()"></div>
                 <div class="inp-box"><label>Allowable FAR</label><input type="number" id="D" step="any" placeholder="0" oninput="runCalculation()"></div>
                 <div class="inp-box"><label>Density</label><input type="number" id="G" placeholder="0" oninput="runCalculation()"></div>
-                <div class="inp-box span-2"><label>Minimum MGC (%)</label><input type="number" id="I_val" placeholder="0" oninput="runCalculation()"></div>
+                <div class="inp-box span-2 mgc-highlight"><label style="color:var(--primary)">Minimum MGC (%)</label><input type="number" id="I_val" placeholder="0" oninput="runCalculation()"></div>
             </div>
-            <button class="action-btn reset-btn" onclick="resetCalculator()">🔄 Reset</button>
+            
+            <!-- রিসেট এবং প্রিন্ট/সামারি/কনসাল্ট বাটনগুলো একসাথে কার্ডের নিচে গোছানো হলো -->
+            <div class="combined-action-panel">
+                <div class="bottom-btn-row">
+                    <button class="action-card-btn" onclick="window.print()">🖨️ Print</button>
+                    <button class="action-card-btn" onclick="copySummary()">📋 Summary</button>
+                    <button class="action-card-btn wa-btn-inline" onclick="window.open('https://wa.me/8801601499664?text=Hello,%20I%20need%20consultation%20regarding%20RAJUK%20FAR%202025.')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 13px; vertical-align: middle; margin-right: 4px;">Consult
+                    </button>
+                </div>
+                <button class="action-btn reset-btn" onclick="resetCalculator()">🔄 Reset All Data</button>
+            </div>
         </div>
 
         <div class="card">
@@ -669,30 +746,46 @@ input, button, select, textarea, #status-text {
         <div class="card">
             <div class="card-title">Final FAR & Block Limits</div>
             <div class="inputs-grid-wrapper" style="grid-template-columns: 1fr;">
-                <div class="inp-box" style="margin-bottom: 5px; position: relative;">
+                <div class="inp-box span-2" style="margin-bottom: 5px; position: relative;">
                     <label>Area Far & Density</label>
                     <input type="text" id="searchInp" placeholder="Search Ward no, Block No, Union etc" autocomplete="off">
                     <ul id="searchSuggestions"></ul>
                 </div>
             </div>
-            <div id="singleCardResult" style="width: 100%; margin-top: 5px;"></div>
+            <div id="singleCardResult" style="width: 100%; margin-top: 3px; max-height: 80px; overflow-y: auto;"></div>
             
-            <div class="res-item highlight" style="margin-top:6px; cursor:pointer; padding: 8px;" onclick="setFarToCalc()">
-                <span style="color:var(--success); font-size: 9px;">FINAL ALLOWABLE FAR</span>
-                <b id="fFar" style="color:var(--success); font-size:18px;">0.00</b>
-                <p style="font-size:8px; opacity:0.9; margin:2px 0 0 0;">CLICK HERE TO GET RESULT</p>
+            <div class="res-item highlight" style="margin-top:6px; cursor:pointer; padding: 10px;" onclick="setFarToCalc()">
+                <span style="color:var(--success); font-size: 10px;">FINAL ALLOWABLE FAR</span>
+                <b id="fFar" style="color:var(--success); font-size:22px;">0.00</b>
+                <p style="font-size:9px; opacity:0.9; margin:2px 0 0 0;">CLICK HERE TO GET RESULT</p>
             </div>
             
-            <div style="margin-top:auto; border-top:1px solid var(--border); padding-top:6px;">
-                <div style="display:flex; justify-content:space-between; font-size:11px;"><span>Base FAR:</span><span id="bFar">0.00</span></div>
-                <div style="display:flex; justify-content:space-between; font-size:11px;"><span>Land Incentive Far:</span><span id="lInc">0.00</span></div>
-                <div style="display:flex; justify-content:space-between; font-size:11px;"><span>Others Incentive Far:</span><span id="oInc">0.00</span></div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:bold; color:var(--accent);"><span>Highest Far:</span><span id="totalFarDisp">0.00</span></div>
+            <div style="margin-top:auto; border-top:1px solid var(--border); padding-top:8px;">
+                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Base FAR:</span><span id="bFar">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Land Incentive Far:</span><span id="lInc">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Others Incentive Far:</span><span id="oInc">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:bold; color:var(--accent);"><span>Highest Far:</span><span id="totalFarDisp">0.00</span></div>
             </div>
         </div>
     </div>
+
+    <!-- মোবাইলের নিচের সুইচ ট্যাব বার -->
+    <div class="tab-wrapper bottom-tabs-mobile" style="display:none;">
+        <button class="tab-btn active" id="mobBtn1" onclick="switchTab('calcTab', 'btn1'); syncMobTabs('mobBtn1')">Storied (Manual)</button>
+        <button class="tab-btn" id="mobBtn2" onclick="switchTab('logicTab', 'btn2'); syncMobTabs('mobBtn2')">FAR (auto)</button>
+    </div>
+
     <div class="footer">© 2026 Developed by Opu Ahmed</div>
 </div>
+
+<script>
+function syncMobTabs(btnId) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(btnId).classList.add('active');
+    if(btnId === 'mobBtn1') document.getElementById('btn1').classList.add('active');
+    if(btnId === 'mobBtn2') document.getElementById('btn2').classList.add('active');
+}
+</script>
 
 <script>
     const blocks = [
