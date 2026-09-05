@@ -153,15 +153,13 @@ body {
     font-family: 'Hind Siliguri', 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg) !important; 
     margin: 0; 
-    padding: 15px; 
+    padding: 0 !important; /* চারপাশের বাড়তি প্যাডিং সরিয়ে দেওয়া হলো */
     min-height: 100vh;
     box-sizing: border-box;
     color: var(--text-main); 
     transition: background 0.3s ease, color 0.3s ease;
     font-size: 14px;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
@@ -185,8 +183,11 @@ input, button, select, textarea {
 }
 
 .container { 
-    max-width: 1000px; 
+    max-width: 100% !important; 
+    width: 100% !important; 
     margin: 0 auto; 
+    padding: 15px; /* কন্টেইনারের ভেতরে প্যাডিং থাকবে কিন্তু স্ক্রিন জুড়ে দেখাবে */
+    box-sizing: border-box;
 }
 
 /* প্রফেশনাল অ্যাপ হেডার ও স্ট্যাটাস বার ব্লেন্ডিং */
