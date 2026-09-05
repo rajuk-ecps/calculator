@@ -153,7 +153,9 @@ body {
     font-family: 'Hind Siliguri', 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg) !important; 
     margin: 0; 
-    padding: 0 !important; /* চারপাশের বাড়তি প্যাডিং সরিয়ে দেওয়া হলো */
+    padding: 0 !important;
+    /* স্ট্যাটাস বারের নিচে বা নচের ভেতর কন্টেন্ট চলে যাওয়া রোধ করতে এবং ফুল স্ক্রিন রাখতে */
+    padding-top: env(safe-area-inset-top) !important; 
     min-height: 100vh;
     box-sizing: border-box;
     color: var(--text-main); 
