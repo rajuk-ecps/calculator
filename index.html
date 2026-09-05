@@ -26,8 +26,7 @@
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 	
-	<style>
-    :root { 
+	:root { 
     /* রাজউক পোর্টালের প্রিমিয়াম এবং আধুনিক কালার প্যালেট */
     --bg: #eaf2f8; 
     --card-bg: #ffffff; 
@@ -150,35 +149,18 @@ body.light-mode {
 
 body { 
     font-family: 'Hind Siliguri', 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--primary) !important; /* বডির ব্যাকগ্রাউন্ড সাময়িকভাবে হেডারের রঙের মতো রাখা যেতে পারে যাতে স্ট্যাটাস বারের সাথে ব্লেন্ড হয়ে যায় */
+    background-color: var(--bg) !important; 
     margin: 0; 
-    padding: 0 !important;
+    padding: 15px; 
     min-height: 100vh;
     box-sizing: border-box;
-}
-
-/* মূল কন্টেইনারে আবার আপনার আসল হালকা ব্যাকগ্রাউন্ড ফিরিয়ে দেওয়া হলো */
-.container { 
-    max-width: 1000px; 
-    margin: 0 auto; 
-    padding: 15px;
-    padding-top: max(15px, env(safe-area-inset-top)); /* নচ বা স্ট্যাটাস বারের সেফ এরিয়া হ্যান্ডেল করার জন্য */
-    background-color: var(--bg);
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
-/* অ্যাপ হেডার স্ট্যাটাস বারের নিচ থেকে শুরু হবে */
-.app-header {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
-    padding: 14px 22px; 
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.15); 
-    margin-bottom: 20px;
-    box-shadow: 0 8px 25px rgba(15, 76, 129, 0.25);
+    color: var(--text-main); 
+    transition: background 0.3s ease, color 0.3s ease;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 input, textarea {
@@ -201,11 +183,8 @@ input, button, select, textarea {
 }
 
 .container { 
-    max-width: 100% !important; 
-    width: 100% !important; 
+    max-width: 1000px; 
     margin: 0 auto; 
-    padding: 15px; /* কন্টেইনারের ভেতরে প্যাডিং থাকবে কিন্তু স্ক্রিন জুড়ে দেখাবে */
-    box-sizing: border-box;
 }
 
 /* প্রফেশনাল অ্যাপ হেডার ও স্ট্যাটাস বার ব্লেন্ডিং */
@@ -647,7 +626,6 @@ input, button, select, textarea {
         margin: 1cm; 
     }
 }
-	</style>
 </head>
 	
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
