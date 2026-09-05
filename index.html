@@ -26,313 +26,609 @@
 	<!-- Firebase (v8) CDN -->
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <style>
-        :root { 
-            /* রাজউক পোর্টালের আসল কালার প্যালেট */
-            --bg: #eaf2f8; 
-            --card-bg: #ffffff; 
-            --primary: #0f4c81;       /* গাঢ় নীল (Deep Blue) */
-            --primary-dark: #0a355c;  
-            --accent: #0f4c81;        /* মেইন ব্র্যান্ড কালার */
-            --accent-hover: #0a355c;
-            --text-main: #0f172a; 
-            --text-sub: #475569; 
-            --input-bg: #f8fafc; 
-            --border: #cbd5e1; 
-            --blue: #0284c7; 
-            --red: #ef4444; 
-            --success: #10b981; 
-        }
-#loader { position: fixed; inset: 0; background: var(--bg); display: none; justify-content: center; align-items: center; z-index: 99; color: var(--primary); font-weight: bold; }
-        
-        #lock-screen { display: none; flex-direction: column; align-items: center; text-align: center; padding: 20px 0; width: 100%; box-sizing: border-box; justify-content: center;}
-        .box { background: var(--card-bg); padding: 25px; border-radius: 24px; border: 2px solid var(--primary); max-width: 360px; width: 100%; box-shadow: 0 10px 30px rgba(15, 76, 129, 0.15); box-sizing: border-box; }
-        
-        .id-badge { background: rgba(15, 76, 129, 0.1); color: var(--primary); padding: 8px 15px; border-radius: 10px; font-weight: bold; font-size: 13px; display: inline-block; margin: 10px 0; border: 1px solid var(--primary); }
-        .payment-info { background: rgba(15, 76, 129, 0.05); border: 1px dashed var(--primary); padding: 12px; border-radius: 12px; margin: 10px 0; color: var(--primary); font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .copy-btn { background: var(--primary); border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 12px; color: #ffffff; }
-        
-        .styled-input { width: 100%; padding: 12px; margin: 6px 0; border-radius: 10px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-main); box-sizing: border-box; outline: none; font-size: 14px; }
-        .btn-wa { background: rgba(15, 76, 129, 0.1); color: var(--primary); padding: 14px; border-radius: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; margin-top: 15px; border: 1px solid var(--primary); width: 100%; cursor: pointer; font-size: 16px; }
+	
+	<style>
+    :root { 
+    /* রাজউক পোর্টালের প্রিমিয়াম এবং আধুনিক কালার প্যালেট */
+    --bg: #eaf2f8; 
+    --card-bg: #ffffff; 
+    --primary: #0f4c81;       /* গাঢ় নীল (Deep Blue) */
+    --primary-dark: #0a355c;  
+    --accent: #0f4c81;        /* মেইন ব্র্যান্ড কালার */
+    --accent-hover: #0a355c;
+    --text-main: #0f172a; 
+    --text-sub: #475569; 
+    --input-bg: #f8fafc; 
+    --border: #cbd5e1; 
+    --blue: #0284c7; 
+    --red: #ef4444; 
+    --success: #10b981; 
+}
 
-        body.light-mode {
-            --bg: #eaf2f8; 
-            --card-bg: #ffffff;
-            --input-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-            --border: #cbd5e1;
-            --res-bg: #f1f5f9;
-            --res-main-bg: #e2e8f0;
-            --res-blue-bg: #dbeafe;
-        }
-        body { 
-    font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
-    background-color: #eaf2f8 !important; /* হালকা নীলাভ ব্যাকগ্রাউন্ড ফিক্স */
+/* অ্যান্ড্রয়েড/আইওএস স্ট্যাটাস বার কালার ম্যাচিংয়ের জন্য মেটাস্ট্যাগ সাপোর্ট */
+@supports (padding-top: env(safe-area-inset-top)) {
+    body {
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
+
+#loader { 
+    position: fixed; 
+    inset: 0; 
+    background: var(--bg); 
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 99; 
+    color: var(--primary); 
+    font-weight: bold; 
+}
+    
+#lock-screen { 
+    display: none; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    padding: 20px 0; 
+    width: 100%; 
+    box-sizing: border-box; 
+    justify-content: center;
+}
+
+.box { 
+    background: var(--card-bg); 
+    padding: 25px; 
+    border-radius: 24px; 
+    border: 2px solid var(--primary); 
+    max-width: 360px; 
+    width: 100%; 
+    box-shadow: 0 10px 30px rgba(15, 76, 129, 0.15); 
+    box-sizing: border-box; 
+}
+    
+.id-badge { 
+    background: rgba(15, 76, 129, 0.1); 
+    color: var(--primary); 
+    padding: 8px 15px; 
+    border-radius: 10px; 
+    font-weight: bold; 
+    font-size: 13px; 
+    display: inline-block; 
+    margin: 10px 0; 
+    border: 1px solid var(--primary); 
+}
+
+.payment-info { 
+    background: rgba(15, 76, 129, 0.05); 
+    border: 1px dashed var(--primary); 
+    padding: 12px; 
+    border-radius: 12px; 
+    margin: 10px 0; 
+    color: var(--primary); 
+    font-size: 14px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px; 
+}
+
+.copy-btn { 
+    background: var(--primary); 
+    border: none; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 12px; 
+    color: #ffffff; 
+}
+    
+.styled-input { 
+    width: 100%; 
+    padding: 12px; 
+    margin: 6px 0; 
+    border-radius: 10px; 
+    border: 1px solid var(--border); 
+    background: var(--input-bg); 
+    color: var(--text-main); 
+    box-sizing: border-box; 
+    outline: none; 
+    font-size: 14px; 
+}
+
+body.light-mode {
+    --bg: #eaf2f8; 
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-sub: #64748b;
+    --border: #cbd5e1;
+    --res-bg: #f1f5f9;
+    --res-main-bg: #e2e8f0;
+    --res-blue-bg: #dbeafe;
+}
+
+body { 
+    font-family: 'Hind Siliguri', 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg) !important; 
     margin: 0; 
-    padding: 20px; 
-    padding-top: calc(20px + env(safe-area-inset-top));
-    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    padding: 15px; 
     min-height: 100vh;
     box-sizing: border-box;
     color: var(--text-main); 
-    transition: background 0.3s, color 0.3s;
+    transition: background 0.3s ease, color 0.3s ease;
     font-size: 14px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
+
 input, textarea {
-user-select: text !important;
+    user-select: text !important;
+    font-family: 'Hind Siliguri', sans-serif !important;
 }
+
+input, button, select, textarea {
+    font-family: 'Hind Siliguri', sans-serif !important;
+}
+
 @keyframes farBlink {
-0% { opacity: 1; color: var(--red); }
-50% { opacity: 0.3; color: var(--red); }
-100% { opacity: 1; color: var(--red); }
-}
-.far-warning { animation: farBlink 0.6s infinite; }
-        .container { max-width: 1000px; margin: 0 auto; }
-
-        .app-header {
-            display: flex; justify-content: space-between; align-items: center;
-            background: var(--primary); padding: 12px 25px; border-radius: 15px;
-            border: 1px solid var(--primary-dark); margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(15, 76, 129, 0.2);
-        }
-        .app-title { font-size: 18px; font-weight: 800; color: #ffffff; letter-spacing: 1px; }
-
-        .btn-group { display: flex; gap: 8px; }
-        .action-btn { 
-            padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.25);
-            background: rgba(255,255,255,0.12); color: #ffffff; cursor: pointer;
-            font-size: 12px; font-weight: bold; transition: 0.2s;
-        }
-        .action-btn:hover { border-color: #ffffff; background: #ffffff; color: var(--primary); }
-
-        .tab-wrapper { display: flex; gap: 10px; margin-bottom: 15px; justify-content: center; }
-        .tab-btn { 
-            flex: 0 1 180px; padding: 12px; border: 1px solid var(--border); background: var(--card-bg);
-            color: var(--text-sub); font-weight: bold; cursor: pointer; border-radius: 12px; transition: 0.3s;
-            font-size: 13px; text-transform: uppercase;
-        }
-        .tab-btn.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
-
-        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
-
-        .card { 
-            background: var(--card-bg); 
-		    border-radius: 20px; 
-		    padding: 25px; 
-		    border: 1px solid var(--border); 
-		    display: flex; 
-		    flex-direction: column;
-		    box-sizing: border-box; 
-		    position: relative; 
-		    /* min-height সরিয়ে height: 100% দেওয়া হলো যেন দুই পাশের কার্ড সমান থাকে */
-		    height: 100%; 
-		    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-        .card-title { 
-            font-size: 14px; color: var(--primary); margin-bottom: 20px; 
-            font-weight: bold; border-bottom: 2px solid var(--primary); padding-bottom: 10px; 
-            text-transform: uppercase;
-        }
-
-        .inp-box { margin-bottom: 15px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 15px; position: relative; overflow: visible; }
-        .inp-box label { display: block; font-size: 9px; color: var(--text-sub); margin-bottom: 4px; text-transform: uppercase; font-weight: bold; }
-        .inp-box input, .logic-select { 
-            width: 100%; background: transparent; border: none; color: var(--text-main); 
-            outline: none; font-size: 15px; font-weight: 600;
-        }
-        .logic-select option { background: var(--card-bg); color: var(--text-main); }
-
-.incentive-grid {
-display: grid;
-grid-template-columns: 1fr 1fr; 
-gap: 10px;
-margin-bottom: 10px;
+    0% { opacity: 1; color: var(--red); }
+    50% { opacity: 0.3; color: var(--red); }
+    100% { opacity: 1; color: var(--red); }
 }
 
-.incentive-box {
-background: var(--input-bg); 
-padding: 15px; 
-border-radius: 8px; 
-margin-top: 8px; 
-border: 1px solid var(--border); 
-display: none; 
+.far-warning { 
+    animation: farBlink 0.6s infinite; 
 }
 
-        #searchSuggestions {
-position: absolute;
-left: 0;
-right: 0;                
-width: 100%;              
-box-sizing: border-box;  
-background: var(--card-bg);
-max-height: 200px;
-overflow-y: auto;
-z-index: 1000;
-border: 1.5px solid var(--primary);
-border-radius: 8px;
-margin-top: 5px;
-padding: 0;
-list-style: none;
-box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-        #searchSuggestions li { padding: 12px; cursor: pointer; border-bottom: 1px solid var(--border); font-size: 12px; transition: 0.2s; color: var(--text-main); }
-        #searchSuggestions li:hover { background: rgba(15, 76, 129, 0.08); color: var(--primary); }
-
-        .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex-grow: 1; }
-        .res-item { 
-            background: var(--input-bg); border: 1px solid var(--border); padding: 15px; 
-            border-radius: 12px; text-align: center; display: flex; flex-direction: column; justify-content: center;
-        }
-        .res-item span { font-size: 10px; color: var(--text-sub); display: block; margin-bottom: 5px; text-transform: uppercase; font-weight: 700; }
-        .res-item b { font-size: 20px; color: var(--text-main); }
-        
-        /* রেজাল্ট হাইলাইট বক্সের বর্ডার ও টেক্সট কালার */
-        .highlight { grid-column: span 2; border: 1px solid var(--primary); background: rgba(15, 76, 129, 0.04); }
-        .highlight span { color: var(--primary); font-weight: bold; }
-        .highlight b { font-size: 30px; color: var(--primary); }
-
-.collapse-header span { color: var(--text-main); }
-        .collapse-header { background: var(--input-bg); padding: 12px; cursor: pointer; border-radius: 8px; margin-top: 8px; display: flex; justify-content: space-between; border: 1px solid var(--border); font-size: 12px; font-weight: bold; }
-        .incentive-box { background: var(--input-bg); padding: 15px; border-radius: 8px; margin-top: 8px; border: 1px solid var(--border); display: none; }
-        .check-item { display: flex; align-items: center; gap: 10px; font-size: 12px; margin-bottom: 8px; cursor: pointer; color: var(--text-main); }
-        .check-item input { width: 16px; height: 16px; accent-color: var(--primary); }
-
-        .acc-body { display: none; margin-top: 5px; }
-        .acc-body.show { display: block; }
-        .block-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
-        .block-table th { font-size: 10px; color: var(--primary); text-align: left; padding: 6px; border-bottom: 1px solid var(--border); }
-        .block-table td { padding: 8px 6px; font-size: 10px; border-bottom: 1px solid var(--border); color: var(--text-main); }
-
-        .footer { text-align: center; padding: 30px; font-size: 11px; color: var(--text-sub); }
-
-        @media (max-width: 900px) { 
-            .main-grid { grid-template-columns: 1fr; }
-            .app-header { flex-direction: column; text-align: center; gap: 10px; }
-            .card { min-height: auto !important; }
-        }
-@media print {
-.app-header, .tab-wrapper, .action-btn, .footer, 
-.collapse-header, #incentive-content, .btn-group, 
-#searchSuggestions, .inp-box button { 
-display: none !important; 
+.container { 
+    max-width: 1000px; 
+    margin: 0 auto; 
 }
 
-body { 
-	font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
-    background-color: #eaf2f8 !important; 
-    margin: 0; 
-    /* নচ এবং স্ট্যাটাস বারের নিচে পর্যাপ্ত জায়গা রাখার জন্য প্যাডিং ফিক্স */
-    padding: 15px; 
-    padding-top: max(20px, env(safe-area-inset-top)) !important;
-    padding-bottom: max(20px, env(safe-area-inset-bottom)) !important;
-    min-height: 100vh;
-    box-sizing: border-box;
-    color: var(--text-main);
+/* প্রফেশনাল অ্যাপ হেডার ও স্ট্যাটাস বার ব্লেন্ডিং */
+.app-header {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
+    padding: 14px 22px; 
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(15, 76, 129, 0.25);
 }
 
-.container { max-width: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+.app-title { 
+    font-size: 18px; 
+    font-weight: 850; 
+    color: #ffffff; 
+    letter-spacing: 0.5px; 
+}
 
-#calcTab { 
-display: grid !important; 
-grid-template-columns: 1fr 1fr !important; 
-gap: 10px !important; 
-margin: 0 !important;
+.btn-group { 
+    display: flex; 
+    gap: 8px; 
+}
+
+.action-btn { 
+    padding: 8px 14px; 
+    border-radius: 10px; 
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12); 
+    color: #ffffff; 
+    cursor: pointer;
+    font-size: 12px; 
+    font-weight: bold; 
+    transition: all 0.25s ease;
+    backdrop-filter: blur(5px);
+}
+
+.action-btn:hover { 
+    border-color: #ffffff; 
+    background: #ffffff; 
+    color: var(--primary); 
+    transform: translateY(-1px);
+}
+
+.tab-wrapper { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 20px; 
+    justify-content: center; 
+}
+
+.tab-btn { 
+    flex: 0 1 180px; 
+    padding: 12px; 
+    border: 1px solid var(--border); 
+    background: var(--card-bg);
+    color: var(--text-sub); 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 12px; 
+    transition: all 0.3s ease;
+    font-size: 13px; 
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.tab-btn.active { 
+    background: var(--primary); 
+    color: #ffffff; 
+    border-color: var(--primary); 
+    box-shadow: 0 4px 12px rgba(15, 76, 129, 0.3);
+}
+
+.main-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    align-items: stretch; 
 }
 
 .card { 
-border: 1px solid #333 !important; 
-background: white !important; 
-min-height: auto !important; 
-padding: 10px !important; 
-margin: 0 !important;
-box-shadow: none !important;
-border-radius: 8px !important;
+    background: var(--card-bg); 
+    border-radius: 20px; 
+    padding: 25px; 
+    border: 1px solid var(--border); 
+    display: flex; 
+    flex-direction: column;
+    box-sizing: border-box; 
+    position: relative; 
+    height: 100%; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
 }
 
 .card-title { 
-font-size: 12px !important;
-color: black !important; 
-border-bottom: 1px solid #000 !important; 
-margin-bottom: 8px !important;
-padding-bottom: 4px !important;
+    font-size: 13px; 
+    color: var(--primary); 
+    margin-bottom: 20px; 
+    font-weight: 800; 
+    border-bottom: 2px solid var(--primary); 
+    padding-bottom: 8px; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .inp-box { 
-padding: 5px 10px !important; 
-margin-bottom: 5px !important; 
-border: 1px solid #eee !important;
+    margin-bottom: 15px; 
+    background: var(--input-bg); 
+    border: 1px solid var(--border); 
+    border-radius: 12px; 
+    padding: 10px 16px; 
+    position: relative; 
+    overflow: visible; 
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.res-grid { gap: 8px !important; }
+
+.inp-box:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
+}
+
+.inp-box label { 
+    display: block; 
+    font-size: 10px; 
+    color: var(--text-sub); 
+    margin-bottom: 4px; 
+    text-transform: uppercase; 
+    font-weight: 700; 
+}
+
+.inp-box input, .logic-select { 
+    width: 100%; 
+    background: transparent; 
+    border: none; 
+    color: var(--text-main); 
+    outline: none; 
+    font-size: 15px; 
+    font-weight: 600;
+}
+
+.logic-select option { 
+    background: var(--card-bg); 
+    color: var(--text-main); 
+}
+
+.incentive-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.incentive-box {
+    background: var(--input-bg); 
+    padding: 15px; 
+    border-radius: 12px; 
+    margin-top: 8px; 
+    border: 1px solid var(--border); 
+    display: none; 
+}
+
+#searchSuggestions {
+    position: absolute;
+    left: 0;
+    right: 0;                
+    width: 100%;            
+    box-sizing: border-box;  
+    background: var(--card-bg);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border: 1.5px solid var(--primary);
+    border-radius: 12px;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+#searchSuggestions li { 
+    padding: 12px; 
+    cursor: pointer; 
+    border-bottom: 1px solid var(--border); 
+    font-size: 12px; 
+    transition: 0.2s; 
+    color: var(--text-main); 
+}
+
+#searchSuggestions li:hover { 
+    background: rgba(15, 76, 129, 0.08); 
+    color: var(--primary); 
+}
+
+.res-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; 
+    flex-grow: 1; 
+}
+
 .res-item { 
-padding: 8px !important; 
-background: #f9f9f9 !important; 
-border: 1px solid #ddd !important;
+    background: var(--input-bg); 
+    border: 1px solid var(--border); 
+    padding: 15px; 
+    border-radius: 14px; 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
 }
 
-.res-item b { font-size: 16px !important; color: black !important; }
-.highlight b { font-size: 22px !important; color: #0f4c81 !important; } 
+.res-item span { 
+    font-size: 10px; 
+    color: var(--text-sub); 
+    display: block; 
+    margin-bottom: 5px; 
+    text-transform: uppercase; 
+    font-weight: 700; 
+}
 
-@page { 
-size: A4 portrait; 
-margin: 0.5cm; 
+.res-item b { 
+    font-size: 20px; 
+    color: var(--text-main); 
 }
+    
+.highlight { 
+    grid-column: span 2; 
+    border: 1.5px solid var(--primary); 
+    background: rgba(15, 76, 129, 0.04); 
 }
-#singleCardResult {
-max-height: 180px; 
-overflow-y: auto;  
-margin-top: 10px;
-scrollbar-width: thin;
-scrollbar-color: var(--primary) transparent;
+
+.highlight span { 
+    color: var(--primary); 
+    font-weight: bold; 
 }
-{ 
-font-family: 'Hind Siliguri', sans-serif; 
+
+.highlight b { 
+    font-size: 28px; 
+    color: var(--primary); 
 }
-input, button, select, textarea, #status-text {
-font-family: 'Hind Siliguri', sans-serif !important;
+
+.collapse-header { 
+    background: var(--input-bg); 
+    padding: 12px 15px; 
+    cursor: pointer; 
+    border-radius: 10px; 
+    margin-top: 10px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    border: 1px solid var(--border); 
+    font-size: 12px; 
+    font-weight: bold; 
+    transition: background 0.2s;
+}
+
+.collapse-header:hover {
+    background: rgba(15, 76, 129, 0.03);
+}
+
+.collapse-header span { 
+    color: var(--text-main); 
+}
+
+.check-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-size: 12px; 
+    margin-bottom: 8px; 
+    cursor: pointer; 
+    color: var(--text-main); 
+}
+
+.check-item input { 
+    width: 16px; 
+    height: 16px; 
+    accent-color: var(--primary); 
+}
+
+.acc-body { 
+    display: none; 
+    margin-top: 5px; 
+}
+
+.acc-body.show { 
+    display: block; 
+}
+
+.block-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 5px; 
+}
+
+.block-table th { 
+    font-size: 10px; 
+    color: var(--primary); 
+    text-align: left; 
+    padding: 6px; 
+    border-bottom: 1px solid var(--border); 
+}
+
+.block-table td { 
+    padding: 8px 6px; 
+    font-size: 10px; 
+    border-bottom: 1px solid var(--border); 
+    color: var(--text-main); 
+}
+
+.footer { 
+    text-align: center; 
+    padding: 25px; 
+    font-size: 11px; 
+    color: var(--text-sub); 
 }
 
 .btn-wa {
-background: rgba(15, 76, 129, 0.08);
-color: var(--primary);
-border: 1px solid var(--primary);
-font-weight: bold;
-padding: 14px;
-border-radius: 12px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-text-decoration: none;
-margin-top: 15px;
-width: 100%;
-cursor: pointer;
-font-size: 16px;
-transition: all 0.3s ease; 
-box-shadow: 0 4px 15px rgba(15, 76, 129, 0.1);
-font-family: 'Hind Siliguri', sans-serif !important; font-weight: 600;
+    background: rgba(15, 76, 129, 0.08);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    font-weight: bold;
+    padding: 14px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-top: 15px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 15px rgba(15, 76, 129, 0.1);
+    box-sizing: border-box;
 }
 
 .btn-wa:hover {
-background: var(--primary); 
-color: #ffffff; 
-border-color: var(--primary);
-transform: translateY(-3px) scale(1.03); 
-box-shadow: 0 8px 25px rgba(15, 76, 129, 0.3); 
-cursor: pointer;
+    background: var(--primary); 
+    color: #ffffff; 
+    border-color: var(--primary);
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 22px rgba(15, 76, 129, 0.25); 
 }
 
 .btn-wa:active {
-transform: translateY(0) scale(0.98);
+    transform: translateY(0) scale(0.98);
 }
 
-#singleCardResult::-webkit-scrollbar { width: 4px; }
-#singleCardResult::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-    </style>
+#singleCardResult {
+    max-height: 180px; 
+    overflow-y: auto;  
+    margin-top: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+#singleCardResult::-webkit-scrollbar { 
+    width: 4px; 
+}
+
+#singleCardResult::-webkit-scrollbar-thumb { 
+    background: var(--primary); 
+    border-radius: 10px; 
+}
+
+/* রেসপন্সিভ মিডিয়া কোয়েরি */
+@media (max-width: 900px) { 
+    .main-grid { grid-template-columns: 1fr; }
+    .app-header { flex-direction: column; text-align: center; gap: 12px; }
+    .card { min-height: auto !important; height: auto !important; }
+}
+
+/* প্রিন্ট স্টাইল অপ্টিমাইজেশন */
+@media print {
+    .app-header, .tab-wrapper, .action-btn, .footer, 
+    .collapse-header, #incentive-content, .btn-group, 
+    #searchSuggestions, .inp-box button { 
+        display: none !important; 
+    }
+
+    body { 
+        background-color: #ffffff !important; 
+        margin: 0; 
+        padding: 10px; 
+        min-height: auto;
+        color: #000000 !important;
+    }
+
+    .container { max-width: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+
+    #calcTab { 
+        display: grid !important; 
+        grid-template-columns: 1fr 1fr !important; 
+        gap: 10px !important; 
+        margin: 0 !important;
+    }
+
+    .card { 
+        border: 1px solid #94a3b8 !important; 
+        background: #ffffff !important; 
+        min-height: auto !important; 
+        padding: 12px !important; 
+        margin: 0 !important;
+        box-shadow: none !important;
+        border-radius: 10px !important;
+    }
+
+    .card-title { 
+        font-size: 12px !important;
+        color: #0f4c81 !important; 
+        border-bottom: 1px solid #0f4c81 !important; 
+        margin-bottom: 8px !important;
+        padding-bottom: 4px !important;
+    }
+
+    .inp-box { 
+        padding: 6px 10px !important; 
+        margin-bottom: 8px !important; 
+        border: 1px solid #cbd5e1 !important;
+        background: #f8fafc !important;
+    }
+    
+    .res-grid { gap: 10px !important; }
+    .res-item { 
+        padding: 10px !important; 
+        background: #f8fafc !important; 
+        border: 1px solid #cbd5e1 !important;
+    }
+
+    .res-item b { font-size: 16px !important; color: #0f172a !important; }
+    .highlight b { font-size: 22px !important; color: #0f4c81 !important; } 
+
+    @page { 
+        size: A4 portrait; 
+        margin: 1cm; 
+    }
+}
+	</style>
 </head>
 	
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
