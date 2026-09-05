@@ -34,7 +34,6 @@
     --primary: #0f4c81;       
     --primary-dark: #0a355c;  
     --accent: #0f4c81;        
-    --accent-hover: #0a355c;
     --text-main: #0f172a; 
     --text-sub: #475569; 
     --input-bg: #f8fafc; 
@@ -61,7 +60,7 @@
     flex-direction: column; 
     align-items: center; 
     text-align: center; 
-    padding: 20px 0; 
+    padding: 10px 0; 
     width: 100%; 
     box-sizing: border-box; 
     justify-content: center;
@@ -69,8 +68,8 @@
 
 .box { 
     background: var(--card-bg); 
-    padding: 25px; 
-    border-radius: 24px; 
+    padding: 20px; 
+    border-radius: 20px; 
     border: 2px solid var(--primary); 
     max-width: 360px; 
     width: 100%; 
@@ -81,23 +80,23 @@
 .id-badge { 
     background: rgba(15, 76, 129, 0.1); 
     color: var(--primary); 
-    padding: 8px 15px; 
-    border-radius: 10px; 
+    padding: 6px 12px; 
+    border-radius: 8px; 
     font-weight: bold; 
-    font-size: 13px; 
+    font-size: 12px; 
     display: inline-block; 
-    margin: 10px 0; 
+    margin: 8px 0; 
     border: 1px solid var(--primary); 
 }
 
 .payment-info { 
     background: rgba(15, 76, 129, 0.05); 
     border: 1px dashed var(--primary); 
-    padding: 12px; 
-    border-radius: 12px; 
-    margin: 10px 0; 
+    padding: 10px; 
+    border-radius: 10px; 
+    margin: 8px 0; 
     color: var(--primary); 
-    font-size: 14px; 
+    font-size: 13px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -107,69 +106,41 @@
 .copy-btn { 
     background: var(--primary); 
     border: none; 
-    padding: 5px 10px; 
+    padding: 4px 8px; 
     border-radius: 5px; 
     cursor: pointer; 
     font-weight: bold; 
-    font-size: 12px; 
+    font-size: 11px; 
     color: #ffffff; 
 }
     
 .styled-input { 
     width: 100%; 
-    padding: 12px; 
-    margin: 6px 0; 
-    border-radius: 10px; 
+    padding: 10px; 
+    margin: 5px 0; 
+    border-radius: 8px; 
     border: 1px solid var(--border); 
     background: var(--input-bg); 
     color: var(--text-main); 
     box-sizing: border-box; 
     outline: none; 
-    font-size: 14px; 
-}
-
-body.light-mode {
-    --bg: #eaf2f8; 
-    --card-bg: #ffffff;
-    --input-bg: #ffffff;
-    --text-main: #0f172a;
-    --text-sub: #64748b;
-    --border: #cbd5e1;
-    --res-bg: #f1f5f9;
-    --res-main-bg: #e2e8f0;
-    --res-blue-bg: #dbeafe;
+    font-size: 13px; 
 }
 
 body { 
     font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
     background-color: #eaf2f8 !important; 
     margin: 0; 
-    padding: 20px; 
-    padding-top: calc(20px + env(safe-area-inset-top));
-    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    padding: 15px; 
     min-height: 100vh;
     box-sizing: border-box;
     color: var(--text-main); 
-    transition: background 0.3s, color 0.3s;
     font-size: 14px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
 input, textarea {
     user-select: text !important;
-}
-
-@keyframes farBlink {
-    0% { opacity: 1; color: var(--red); }
-    50% { opacity: 0.3; color: var(--red); }
-    100% { opacity: 1; color: var(--red); }
-}
-
-.far-warning { 
-    animation: farBlink 0.6s infinite; 
 }
 
 .container { 
@@ -182,33 +153,32 @@ input, textarea {
     justify-content: space-between; 
     align-items: center;
     background: var(--primary); 
-    padding: 12px 25px; 
-    border-radius: 15px;
-    border: 1px solid var(--primary-dark); 
-    margin-bottom: 20px;
+    padding: 10px 20px; 
+    border-radius: 12px;
+    margin-bottom: 12px;
     box-shadow: 0 4px 15px rgba(15, 76, 129, 0.2);
 }
 
 .app-title { 
-    font-size: 18px; 
+    font-size: 16px; 
     font-weight: 800; 
     color: #ffffff; 
-    letter-spacing: 1px; 
+    letter-spacing: 0.5px; 
 }
 
 .btn-group { 
     display: flex; 
-    gap: 8px; 
+    gap: 6px; 
 }
 
 .action-btn { 
-    padding: 8px 15px; 
-    border-radius: 8px; 
+    padding: 6px 12px; 
+    border-radius: 6px; 
     border: 1px solid rgba(255,255,255,0.25);
     background: rgba(255,255,255,0.12); 
     color: #ffffff; 
     cursor: pointer;
-    font-size: 12px; 
+    font-size: 11px; 
     font-weight: bold; 
     transition: 0.2s;
 }
@@ -221,22 +191,21 @@ input, textarea {
 
 .tab-wrapper { 
     display: flex; 
-    gap: 10px; 
-    margin-bottom: 15px; 
+    gap: 8px; 
+    margin-bottom: 10px; 
     justify-content: center; 
 }
 
 .tab-btn { 
-    flex: 0 1 180px; 
-    padding: 12px; 
+    flex: 0 1 160px; 
+    padding: 10px; 
     border: 1px solid var(--border); 
     background: var(--card-bg);
     color: var(--text-sub); 
     font-weight: bold; 
     cursor: pointer; 
-    border-radius: 12px; 
-    transition: 0.3s;
-    font-size: 13px; 
+    border-radius: 10px; 
+    font-size: 12px; 
     text-transform: uppercase;
 }
 
@@ -249,54 +218,57 @@ input, textarea {
 .main-grid { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 20px; 
+    gap: 15px; 
     align-items: stretch; 
 }
 
 .card { 
     background: var(--card-bg); 
-    border-radius: 20px; 
-    padding: 25px; 
+    border-radius: 16px; 
+    padding: 18px; 
     border: 1px solid var(--border); 
     display: flex; 
     flex-direction: column;
     box-sizing: border-box; 
-    position: relative; 
     height: 100%; 
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
 .card-title { 
-    font-size: 14px; 
+    font-size: 13px; 
     color: var(--primary); 
-    margin-bottom: 20px; 
+    margin-bottom: 12px; 
     font-weight: bold; 
     border-bottom: 2px solid var(--primary); 
-    padding-bottom: 10px; 
+    padding-bottom: 6px; 
     text-transform: uppercase;
 }
 
+/* কমন গ্রিড লেআউট যা ডেস্কটপ এবং মোবাইল উভয়ের জন্য অপ্টিমাইজড */
 .inputs-grid-wrapper {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.span-2 {
+    grid-column: span 2;
 }
 
 .inp-box { 
-    margin-bottom: 15px; 
+    margin-bottom: 0; 
     background: var(--input-bg); 
     border: 1px solid var(--border); 
-    border-radius: 10px; 
-    padding: 10px 15px; 
+    border-radius: 8px; 
+    padding: 8px 12px; 
     position: relative; 
-    overflow: visible; 
 }
 
 .inp-box label { 
     display: block; 
-    font-size: 9px; 
+    font-size: 8.5px; 
     color: var(--text-sub); 
-    margin-bottom: 4px; 
+    margin-bottom: 2px; 
     text-transform: uppercase; 
     font-weight: bold; 
 }
@@ -307,7 +279,7 @@ input, textarea {
     border: none; 
     color: var(--text-main); 
     outline: none; 
-    font-size: 15px; 
+    font-size: 14px; 
     font-weight: 600;
 }
 
@@ -319,15 +291,15 @@ input, textarea {
 .incentive-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .incentive-box {
     background: var(--input-bg); 
-    padding: 15px; 
+    padding: 10px; 
     border-radius: 8px; 
-    margin-top: 8px; 
+    margin-top: 6px; 
     border: 1px solid var(--border); 
     display: none; 
 }
@@ -339,23 +311,22 @@ input, textarea {
     width: 100%;            
     box-sizing: border-box;  
     background: var(--card-bg);
-    max-height: 200px;
+    max-height: 160px;
     overflow-y: auto;
     z-index: 1000;
     border: 1.5px solid var(--primary);
     border-radius: 8px;
-    margin-top: 5px;
+    margin-top: 4px;
     padding: 0;
     list-style: none;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 #searchSuggestions li { 
-    padding: 12px; 
+    padding: 10px; 
     cursor: pointer; 
     border-bottom: 1px solid var(--border); 
-    font-size: 12px; 
-    transition: 0.2s; 
+    font-size: 11px; 
     color: var(--text-main); 
 }
 
@@ -367,15 +338,15 @@ input, textarea {
 .res-grid { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 22px; 
+    gap: 10px; 
     flex-grow: 1; 
 }
 
 .res-item { 
     background: var(--input-bg); 
     border: 1px solid var(--border); 
-    padding: 15px; 
-    border-radius: 12px; 
+    padding: 10px; 
+    border-radius: 10px; 
     text-align: center; 
     display: flex; 
     flex-direction: column; 
@@ -383,21 +354,20 @@ input, textarea {
 }
 
 .res-item span { 
-    font-size: 10px; 
+    font-size: 9px; 
     color: var(--text-sub); 
     display: block; 
-    margin-bottom: 5px; 
+    margin-bottom: 3px; 
     text-transform: uppercase; 
     font-weight: 700; 
 }
 
 .res-item b { 
-    font-size: 20px; 
+    font-size: 18px; 
     color: var(--text-main); 
 }
     
 .highlight { 
-    grid-column: span 2; 
     border: 1px solid var(--primary); 
     background: rgba(15, 76, 129, 0.04); 
 }
@@ -408,20 +378,20 @@ input, textarea {
 }
 
 .highlight b { 
-    font-size: 30px; 
+    font-size: 24px; 
     color: var(--primary); 
 }
 
 .collapse-header { 
     background: var(--input-bg); 
-    padding: 12px; 
+    padding: 10px; 
     cursor: pointer; 
     border-radius: 8px; 
-    margin-top: 8px; 
+    margin-top: 6px; 
     display: flex; 
     justify-content: space-between; 
     border: 1px solid var(--border); 
-    font-size: 12px; 
+    font-size: 11px; 
     font-weight: bold; 
 }
 
@@ -432,22 +402,21 @@ input, textarea {
 .check-item { 
     display: flex; 
     align-items: center; 
-    gap: 10px; 
-    font-size: 12px; 
-    margin-bottom: 8px; 
+    gap: 8px; 
+    font-size: 11px; 
     cursor: pointer; 
     color: var(--text-main); 
 }
 
 .check-item input { 
-    width: 16px; 
-    height: 16px; 
+    width: 14px; 
+    height: 14px; 
     accent-color: var(--primary); 
 }
 
 .acc-body { 
     display: none; 
-    margin-top: 5px; 
+    margin-top: 4px; 
 }
 
 .acc-body.show { 
@@ -456,79 +425,61 @@ input, textarea {
 
 .footer { 
     text-align: center; 
-    padding: 30px; 
-    font-size: 11px; 
+    padding: 15px; 
+    font-size: 10px; 
     color: var(--text-sub); 
 }
 
-/* শুধুমাত্র মোবাইলের জন্য সিঙ্গেল পেজ অপ্টিমাইজেশন (ডেস্কটপ অপরিবর্তিত থাকবে) */
+.reset-btn {
+    width: 100%; 
+    margin-top: 10px; 
+    border-color: var(--red); 
+    color: var(--red);
+    background: transparent;
+}
+
+.reset-btn:hover {
+    background: var(--red);
+    color: #ffffff;
+    border-color: var(--red);
+}
+
+/* মোবাইল ও ছোট স্ক্রিনের জন্য রেসপন্সিভ সিঙ্গেল পেজ অ্যাডজাস্টমেন্ট */
 @media (max-width: 900px) { 
     body {
-        padding: 8px !important;
-        padding-top: calc(8px + env(safe-area-inset-top)) !important;
+        padding: 8px;
     }
     .main-grid { 
         grid-template-columns: 1fr; 
         gap: 10px; 
     }
     .app-header { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 6px; 
         padding: 8px 12px; 
         margin-bottom: 10px;
     }
+    .app-title {
+        font-size: 14px;
+    }
     .card { 
-        min-height: auto !important; 
-        height: auto !important;
-        padding: 12px !important; 
-        border-radius: 14px;
+        padding: 12px; 
     }
     .card-title {
         font-size: 12px;
         margin-bottom: 8px;
-        padding-bottom: 5px;
-    }
-    /* মোবাইল স্ক্রিনে ইনপুটগুলো পাশাপাশি দুই কলাম করে দেবে */
-    .inputs-grid-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-    }
-    .inp-box {
-        margin-bottom: 6px !important;
-        padding: 6px 10px !important;
-    }
-    .inp-box label {
-        font-size: 8px;
-        margin-bottom: 2px;
-    }
-    .inp-box input, .logic-select {
-        font-size: 13px;
-    }
-    .tab-wrapper {
-        margin-bottom: 8px;
-    }
-    .tab-btn {
-        padding: 8px;
-        font-size: 11px;
     }
 }
 
 @media print {
     .app-header, .tab-wrapper, .action-btn, .footer, 
     .collapse-header, #incentive-content, .btn-group, 
-    #searchSuggestions, .inp-box button { 
+    #searchSuggestions { 
         display: none !important; 
     }
 
     body { 
-        font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
-        background-color: #eaf2f8 !important; 
+        background-color: white !important; 
         margin: 0; 
-        padding: 15px; 
-        min-height: 100vh;
-        box-sizing: border-box;
+        padding: 10px; 
         color: var(--text-main);
     }
 
@@ -538,15 +489,12 @@ input, textarea {
         display: grid !important; 
         grid-template-columns: 1fr 1fr !important; 
         gap: 10px !important; 
-        margin: 0 !important;
     }
 
     .card { 
         border: 1px solid #333 !important; 
         background: white !important; 
-        min-height: auto !important; 
         padding: 10px !important; 
-        margin: 0 !important;
         box-shadow: none !important;
         border-radius: 8px !important;
     }
@@ -555,24 +503,19 @@ input, textarea {
         font-size: 12px !important;
         color: black !important; 
         border-bottom: 1px solid #000 !important; 
-        margin-bottom: 8px !important;
-        padding-bottom: 4px !important;
     }
 
     .inp-box { 
-        padding: 5px 10px !important; 
-        margin-bottom: 5px !important; 
+        padding: 5px 8px !important; 
         border: 1px solid #eee !important;
     }
-    .res-grid { gap: 8px !important; }
     .res-item { 
-        padding: 8px !important; 
+        padding: 6px !important; 
         background: #f9f9f9 !important; 
         border: 1px solid #ddd !important;
     }
-
-    .res-item b { font-size: 16px !important; color: black !important; }
-    .highlight b { font-size: 22px !important; color: #0f4c81 !important; } 
+    .res-item b { font-size: 14px !important; color: black !important; }
+    .highlight b { font-size: 20px !important; color: #0f4c81 !important; } 
 
     @page { 
         size: A4 portrait; 
@@ -581,9 +524,9 @@ input, textarea {
 }
 
 #singleCardResult {
-    max-height: 180px; 
+    max-height: 100px; 
     overflow-y: auto;  
-    margin-top: 10px;
+    margin-top: 4px;
     scrollbar-width: thin;
     scrollbar-color: var(--primary) transparent;
 }
@@ -597,38 +540,24 @@ input, button, select, textarea, #status-text {
     color: var(--primary);
     border: 1px solid var(--primary);
     font-weight: bold;
-    padding: 14px;
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     text-decoration: none;
-    margin-top: 15px;
+    margin-top: 10px;
     width: 100%;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: all 0.3s ease; 
-    box-shadow: 0 4px 15px rgba(15, 76, 129, 0.1);
-    font-family: 'Hind Siliguri', sans-serif !important; 
-    font-weight: 600;
 }
 
 .btn-wa:hover {
     background: var(--primary); 
     color: #ffffff; 
-    border-color: var(--primary);
-    transform: translateY(-3px) scale(1.03); 
-    box-shadow: 0 8px 25px rgba(15, 76, 129, 0.3); 
-    cursor: pointer;
 }
-
-.btn-wa:active {
-    transform: translateY(0) scale(0.98);
-}
-
-#singleCardResult::-webkit-scrollbar { width: 4px; }
-#singleCardResult::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
     </style>
 </head>
 	
@@ -662,26 +591,26 @@ input, button, select, textarea, #status-text {
                 <div class="inp-box"><label>Road Widening (Sft)</label><input type="number" id="B" placeholder="0" oninput="runCalculation()"></div>
                 <div class="inp-box"><label>Allowable FAR</label><input type="number" id="D" step="any" placeholder="0" oninput="runCalculation()"></div>
                 <div class="inp-box"><label>Density</label><input type="number" id="G" placeholder="0" oninput="runCalculation()"></div>
-                <div class="inp-box" style="border-color:var(--accent); grid-column: span 2;"><label>Minimum MGC (%)</label><input type="number" id="I_val" placeholder="0" oninput="runCalculation()"></div>
+                <div class="inp-box span-2"><label>Minimum MGC (%)</label><input type="number" id="I_val" placeholder="0" oninput="runCalculation()"></div>
             </div>
-            <button class="action-btn" style="width:100%; margin-top:5px; border-color:var(--red); color:var(--red);" onclick="resetCalculator()">🔄 Reset</button>
+            <button class="action-btn reset-btn" onclick="resetCalculator()">🔄 Reset</button>
         </div>
 
         <div class="card">
             <div class="card-title">Calculation Summary</div>
             <div class="res-grid">
-                <div class="res-item"><span>Net Land Area</span><b id="resC">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
-                <div class="res-item"><span>Road Incentive</span><b id="resF">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
-                <div class="res-item"><span>Max Ground Coverage</span><b id="resJ">0.00</b><small style="font-size:9px; opacity:0.6">Sft</small></div>
-                <div class="res-item"><span>Total Units</span><b id="resH">0.00</b><small style="font-size:9px; opacity:0.6">Nos</small></div>
-                <div class="res-item highlight"><span>Total Allowable Floor Area</span><b id="resE">0.00</b><small style="font-size:10px; opacity:0.6">Sft</small></div>
-                <div class="res-item highlight" style="border-color:var(--blue)"><span>Total Number Of Storied</span><b id="resK" style="color:var(--blue)">0.00</b></div>
+                <div class="res-item"><span>Net Land Area</span><b id="resC">0.00</b><small>Sft</small></div>
+                <div class="res-item"><span>Road Incentive</span><b id="resF">0.00</b><small>Sft</small></div>
+                <div class="res-item"><span>Max Ground Coverage</span><b id="resJ">0.00</b><small>Sft</small></div>
+                <div class="res-item"><span>Total Units</span><b id="resH">0.00</b><small>Nos</small></div>
+                <div class="res-item highlight span-2"><span>Total Allowable Floor Area</span><b id="resE">0.00</b><small style="font-size:10px; opacity:0.6">Sft</small></div>
+                <div class="res-item highlight span-2" style="border-color:var(--blue)"><span>Total Number Of Storied</span><b id="resK" style="color:var(--blue)">0.00</b></div>
             </div>
         </div>
     </div>
 
     <div id="lock-screen">
-        <div class="box" style="margin: 0 auto;">
+        <div class="box">
             <h2 style="color: var(--accent); margin: 0;">রাজউক ফার ২০২৫</h2>
             <p id="status-text" style="font-size: 13px; color: #94a3b8; margin: 5px 0;">এক্সেস প্রয়োজন।</p>
             
@@ -691,8 +620,6 @@ input, button, select, textarea, #status-text {
                 <span>বিকাশ: <b>01712402974</b></span>
                 <button onclick="copyNumber()" class="copy-btn">Copy</button>
             </div>
-            <p style="color: #f59e0b; font-size: 0.7rem; margin-top: 10px; display: none !important;">* পেমেন্টের সময় Reference-এ আপনার User ID লিখুন</p>
-            
             <input type="text" id="userName" placeholder="আপনার নাম *" class="styled-input">
             <input type="number" id="userPhone" placeholder="মোবাইল নাম্বর *" class="styled-input">
 
@@ -706,7 +633,7 @@ input, button, select, textarea, #status-text {
             <div class="inputs-grid-wrapper">
                 <div class="inp-box"><label>Land Zone</label><select id="landZone" class="logic-select" onchange="updateRoadOptions()"><option value="Central">Central Dhaka</option><option value="Outer">Outer Areas</option><option value="Others">Other Areas</option></select></div>
                 <div class="inp-box"><label>Occupancy Type</label><select id="occupancy" class="logic-select" onchange="updateRoadOptions()"><option value="1.0" selected>(A3)-Apartment & Flat</option><option value="1.1">(A6)-Affordable Housing</option></select></div>
-                <div class="inp-box" style="grid-column: span 2;"><label>Land Area (Katha)</label><input type="number" id="kathaLogic" placeholder="0" oninput="syncKatha(); calcLogic();"></div>
+                <div class="inp-box span-2"><label>Land Area (Katha)</label><input type="number" id="kathaLogic" placeholder="0" oninput="syncKatha(); calcLogic();"></div>
                 <div class="inp-box"><label>Existing Road</label><select id="exRoad" class="logic-select" onchange="calcLogic()"></select></div>
                 <div class="inp-box"><label>Proposed Road</label><select id="prRoad" class="logic-select" onchange="calcLogic()"></select></div>
             </div>
@@ -723,14 +650,14 @@ input, button, select, textarea, #status-text {
                     <label class="check-item"><input type="checkbox" id="public" onchange="calcLogic()"> Public Space (+0.50)</label>
                     <label class="check-item"><input type="checkbox" id="a6_inc" onchange="calcLogic()"> A6 (10 Katha) (+0.50)</label>
                     <label class="check-item"><input type="checkbox" id="a6_inc2" onchange="calcLogic()"> A6 (20 Katha) (+0.75)</label>
-                    <label class="check-item" style="grid-column: span 2;"><input type="checkbox" id="road_chk" onchange="toggleRoadInput()"> Road > 30ft</label>
+                    <label class="check-item span-2"><input type="checkbox" id="road_chk" onchange="toggleRoadInput()"> Road > 30ft</label>
                 </div>
                 <input type="number" id="roadFeet" class="logic-select" style="display:none; border:1px solid var(--accent); margin-top:5px; padding:8px; border-radius:10px;" placeholder="Actual Road Width" oninput="calcLogic()">
             </div>
 
-            <div class="collapse-header" onclick="toggleAcc('blockAcc')" style="margin-top:10px; color: var(--accent);"><span>BLOCK DEVELOPMENT</span><span>▼</span></div>
+            <div class="collapse-header" onclick="toggleAcc('blockAcc')" style="margin-top:8px; color: var(--accent);"><span>BLOCK DEVELOPMENT</span><span>▼</span></div>
             <div id="blockAcc" class="acc-body incentive-box">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
                     <label class="check-item"><input type="checkbox" id="b1" onchange="calcLogic()"> Old Dhaka (+.50)</label>
                     <label class="check-item"><input type="checkbox" id="b2" onchange="calcLogic()"> 20K-2Ac (+.50)</label>
                     <label class="check-item"><input type="checkbox" id="b3" onchange="calcLogic()"> 2-5 Ac (+.75)</label>
@@ -744,23 +671,23 @@ input, button, select, textarea, #status-text {
             <div class="inputs-grid-wrapper" style="grid-template-columns: 1fr;">
                 <div class="inp-box" style="margin-bottom: 5px; position: relative;">
                     <label>Area Far & Density</label>
-                    <input type="text" id="searchInp" placeholder="Search Ward no, Block No, Union etc" oninput="filterSearch()" autocomplete="off">
+                    <input type="text" id="searchInp" placeholder="Search Ward no, Block No, Union etc" autocomplete="off">
                     <ul id="searchSuggestions"></ul>
                 </div>
             </div>
-            <div id="singleCardResult" style="width: 100%; margin-top: 10px;"></div>
+            <div id="singleCardResult" style="width: 100%; margin-top: 5px;"></div>
             
-            <div class="res-item highlight" style="margin-top:15px; cursor:pointer;" onclick="setFarToCalc()">
-                <span style="color:var(--success)">FINAL ALLOWABLE FAR</span>
-                <b id="fFar" style="color:var(--success); font-size:25px;">0.00</b>
-                <p style="font-size:10px; opacity:0.9; margin-top:8px;">CLICK HERE TO GET RESULT</p>
+            <div class="res-item highlight" style="margin-top:6px; cursor:pointer; padding: 8px;" onclick="setFarToCalc()">
+                <span style="color:var(--success); font-size: 9px;">FINAL ALLOWABLE FAR</span>
+                <b id="fFar" style="color:var(--success); font-size:18px;">0.00</b>
+                <p style="font-size:8px; opacity:0.9; margin:2px 0 0 0;">CLICK HERE TO GET RESULT</p>
             </div>
             
-            <div style="margin-top:auto; border-top:1px solid var(--border); padding-top:15px;">
-                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Base FAR:</span><span id="bFar">0.00</span></div>
-                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Land Incentive Far:</span><span id="lInc">0.00</span></div>
-                <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Others Incentive Far:</span><span id="oInc">0.00</span></div>
-                <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:bold; color:var(--accent);"><span>Highest Far:</span><span id="totalFarDisp">0.00</span></div>
+            <div style="margin-top:auto; border-top:1px solid var(--border); padding-top:6px;">
+                <div style="display:flex; justify-content:space-between; font-size:11px;"><span>Base FAR:</span><span id="bFar">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:11px;"><span>Land Incentive Far:</span><span id="lInc">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:11px;"><span>Others Incentive Far:</span><span id="oInc">0.00</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:bold; color:var(--accent);"><span>Highest Far:</span><span id="totalFarDisp">0.00</span></div>
             </div>
         </div>
     </div>
