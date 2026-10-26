@@ -457,7 +457,7 @@ transform: translateY(0) scale(0.98);
                 </div>
                 
                 <div style="margin-top:auto; border-top:1px solid var(--border); padding-top:15px;">
-                    <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Base FAR:</span><span id="bFar">0.00</span></div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Base & Max FAR:</span><span id="bFar">0.00</span></div>
                     <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Land Incentive Far:</span><span id="lInc">0.00</span></div>
                     <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Others Incentive Far:</span><span id="oInc">0.00</span></div>
                     <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:bold; color:var(--accent);"><span>Total Far:</span><span id="totalFarDisp">0.00</span></div>
@@ -737,7 +737,7 @@ transform: translateY(0) scale(0.98);
         let el = document.getElementById('fFar');
 
         // ৮. UI আপডেট নিরাপদভাবে করা
-        if(document.getElementById('bFar')) document.getElementById('bFar').innerText = baseFar.toFixed(2);
+		if(document.getElementById('bFar')) {document.getElementById('bFar').innerText = `${baseFar.toFixed(2)}/${highestFar.toFixed(2)}`;}
         if(document.getElementById('lInc')) document.getElementById('lInc').innerText = l.toFixed(2);
         if(document.getElementById('oInc')) document.getElementById('oInc').innerText = o.toFixed(2);
         if(document.getElementById('totalFarDisp')) document.getElementById('totalFarDisp').innerText = totalFar.toFixed(2);
