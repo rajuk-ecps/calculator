@@ -685,55 +685,69 @@ transform: translateY(0) scale(0.98);
 	}
 
     function calcLogic() {
-    // ১. Existing এবং Proposed রোডের গড় মান বের করা
-    const avgRoad = (parseFloat(document.getElementById('exRoad').value) + parseFloat(document.getElementById('prRoad').value)) / 2;
-    
-    // ২. রাস্তার গড় ফার বনাম ব্লক ফার: ছোটটি Base Far, বড়টি Highest Far নির্ধারণ
-    let baseFar = Math.min(avgRoad, selectedBlock.far);
-    let highestFar = Math.max(avgRoad, selectedBlock.far);
+    try {
+        // ১. সেফটি চেক: selectedBlock না থাকলে ডিফল্ট মান ধরা
+        let blockFar = (typeof selectedBlock !== 'undefined' && selectedBlock && selectedBlock.far) ? parseFloat(selectedBlock.far) : 0;
+        
+        // ২. Existing এবং Proposed রোডের গড় মান নিরাপদভাবে বের করা
+        let exRoadEl = document.getElementById('exRoad');
+        let prRoadEl = document.getElementById('prRoad');
+        let exRoadVal = (exRoadEl && exRoadEl.value) ? parseFloat(exRoadEl.value) : 0;
+        let prRoadVal = (prRoadEl && prRoadEl.value) ? parseFloat(prRoadEl.value) : 0;
+        const avgRoad = (exRoadVal + prRoadVal) / 2;
+        
+        // ৩. রাস্তার গড় ফার বনাম ব্লক ফার: ছোটটি Base Far, বড়টি Highest Far নির্ধারণ
+        let baseFar = Math.min(avgRoad, blockFar);
+        let highestFar = Math.max(avgRoad, blockFar);
 
-    // ৩. ল্যান্ড ইনসেন্টিভ (জমির পরিমাণ অনুযায়ী)
-    const k = parseFloat(document.getElementById('kathaLogic').value) || 0;
-    let l = (k < 3) ? 0 : (k < 6) ? 0.20 : (k < 10) ? 0.35 : (k < 15) ? 0.50 : (k < 20) ? 0.65 : 0.75;
+        // ৪. ল্যান্ড ইনসেন্টিভ (জমির পরিমাণ অনুযায়ী)
+        const kEl = document.getElementById('kathaLogic');
+        const k = (kEl && kEl.value) ? parseFloat(kEl.value) : 0;
+        let l = (k < 3) ? 0 : (k < 6) ? 0.20 : (k < 10) ? 0.35 : (k < 15) ? 0.50 : (k < 20) ? 0.65 : 0.75;
 
-    // ৪. এক্সট্রা ইনসেন্টিভ ও ব্লক ডেভেলপমেন্ট গণনা
-    let o = 0;
-    
-    // ৭টি এডিশনাল ইনসেন্টিভ
-    if(document.getElementById('school').checked) o += 0.25;
-    if(document.getElementById('park').checked) o += 0.25;
-    if(document.getElementById('green').checked) o += 0.50;
-    if(document.getElementById('public').checked) o += 0.50;
-    if(document.getElementById('a6_inc').checked) o += 0.50;
-    if(document.getElementById('a6_inc2').checked) o += 0.75;
-    if(document.getElementById('road_chk').checked) {
-        let ft = parseFloat(document.getElementById('roadFeet').value) || 0;
-        if(ft > 30) o += (ft - 30) * 0.02; // ৩০ ফিটের বেশি হলে প্রতি ফিটে ০.০২ যোগ
+        // ৫. এক্সট্রা ইনসেন্টিভ ও ব্লক ডেভেলপমেন্ট গণনা
+        let o = 0;
+        
+        // ৭টি এডিশনাল ইনসেন্টিভ
+        if(document.getElementById('school') && document.getElementById('school').checked) o += 0.25;
+        if(document.getElementById('park') && document.getElementById('park').checked) o += 0.25;
+        if(document.getElementById('green') && document.getElementById('green').checked) o += 0.50;
+        if(document.getElementById('public') && document.getElementById('public').checked) o += 0.50;
+        if(document.getElementById('a6_inc') && document.getElementById('a6_inc').checked) o += 0.50;
+        if(document.getElementById('a6_inc2') && document.getElementById('a6_inc2').checked) o += 0.75;
+        
+        let roadChk = document.getElementById('road_chk');
+        if(roadChk && roadChk.checked) {
+            let roadFeetEl = document.getElementById('roadFeet');
+            let ft = (roadFeetEl && roadFeetEl.value) ? parseFloat(roadFeetEl.value) : 0;
+            if(ft > 30) o += (ft - 30) * 0.02; // ৩০ ফিটের বেশি হলে প্রতি ফিটে ০.০২ যোগ
+        }
+        
+        // ৪টি ব্লক ডেভেলপমেন্ট লজিক
+        if(document.getElementById('b1') && document.getElementById('b1').checked) o += 0.50; // Old Dhaka
+        if(document.getElementById('b2') && document.getElementById('b2').checked) o += 0.50; // 20K-2Ac
+        if(document.getElementById('b3') && document.getElementById('b3').checked) o += 0.75; // 2-5 Ac
+        if(document.getElementById('b4') && document.getElementById('b4').checked) o += 1.0;  // 5Ac+
+
+        // ৬. মোট ফার (Base Far + Land Incentive + Other Incentives)
+        let totalFar = baseFar + l + o;
+
+        // ৭. ফাইনাল রেজাল্ট: Total Far কোনোভাবেই Highest Far-কে ক্রস করবে না
+        let fin = Math.min(totalFar, highestFar); 
+
+        // ৮. স্ক্রিনে বা এইচটিএমএলে নিরাপদভাবে মান প্রদর্শন করা
+        let el = document.getElementById('fFar');
+        if(el) el.innerText = fin.toFixed(2);
+        
+        if(document.getElementById('bFar')) document.getElementById('bFar').innerText = baseFar.toFixed(2);
+        if(document.getElementById('lInc')) document.getElementById('lInc').innerText = l.toFixed(2);
+        if(document.getElementById('oInc')) document.getElementById('oInc').innerText = o.toFixed(2);
+        if(document.getElementById('totalFarDisp')) document.getElementById('totalFarDisp').innerText = fin.toFixed(2);
+
+    } catch (error) {
+        // কোনো সমস্যা হলে অ্যাপ ক্র্যাশ না করে শুধু কনসোলে এরর দেখাবে
+        console.error("Calculation Error: ", error);
     }
-    
-    // ৪টি ব্লক ডেভেলপমেন্ট লজিক
-    if(document.getElementById('b1').checked) o += 0.50; // Old Dhaka
-    if(document.getElementById('b2').checked) o += 0.50; // 20K-2Ac
-    if(document.getElementById('b3').checked) o += 0.75; // 2-5 Ac
-    if(document.getElementById('b4').checked) o += 1.0;  // 5Ac+
-
-    // ৫. মোট ফার (Base Far + Land Incentive + Other Incentives)
-    let totalFar = baseFar + l + o;
-
-    // ৬. ফাইনাল রেজাল্ট: Total Far কোনোভাবেই Highest Far-কে ক্রস করবে না
-    let fin = Math.min(totalFar, highestFar); 
-
-    // ৭. স্ক্রিনে বা এইচটিএমএলে মান প্রদর্শন করা
-    let el = document.getElementById('fFar');
-    if(el) {
-        el.innerText = fin.toFixed(2);
-    }
-    
-    // যদি প্রয়োজন হয় নিচের ডিসপ্লে ফিল্ডগুলোও আপডেট করে নিতে পারেন:
-    if(document.getElementById('bFar')) document.getElementById('bFar').innerText = baseFar.toFixed(2);
-    if(document.getElementById('lInc')) document.getElementById('lInc').innerText = l.toFixed(2);
-    if(document.getElementById('oInc')) document.getElementById('oInc').innerText = o.toFixed(2);
-    if(document.getElementById('totalFarDisp')) document.getElementById('totalFarDisp').innerText = fin.toFixed(2);
 }
 
     // লিমিট ক্রস করলে ওয়ার্নিং অ্যানিমেশন
@@ -743,7 +757,7 @@ transform: translateY(0) scale(0.98);
     } else {
         el.classList.remove('far-warning');
     }
-}
+
 
     function setFarToCalc() { document.getElementById('D').value = document.getElementById('fFar').innerText; document.getElementById('G').value = selectedBlock.density; document.getElementById('A').value = document.getElementById('kathaLogic').value; switchTab('calcTab', 'btn1'); runCalculation(true); }
     function syncKatha() { document.getElementById('A').value = document.getElementById('kathaLogic').value; }
