@@ -684,7 +684,7 @@ transform: translateY(0) scale(0.98);
         </div>`;
 	}
 
-    function calcLogic() {
+   function calcLogic() {
     try {
         // ১. সেফটি চেক: selectedBlock না থাকলে ডিফল্ট মান ধরা
         let blockFar = (typeof selectedBlock !== 'undefined' && selectedBlock && selectedBlock.far) ? parseFloat(selectedBlock.far) : 0;
@@ -699,12 +699,12 @@ transform: translateY(0) scale(0.98);
         // ৩. রাস্তার গড় ফার বনাম ব্লক ফার: ছোটটি Base Far, বড়টি Highest Far নির্ধারণ
         let baseFar = Math.min(avgRoad, blockFar);
         let highestFar = Math.max(avgRoad, blockFar);
-
+        
         // ৪. ল্যান্ড ইনসেন্টিভ (জমির পরিমাণ অনুযায়ী)
         const kEl = document.getElementById('kathaLogic');
         const k = (kEl && kEl.value) ? parseFloat(kEl.value) : 0;
         let l = (k < 3) ? 0 : (k < 6) ? 0.20 : (k < 10) ? 0.35 : (k < 15) ? 0.50 : (k < 20) ? 0.65 : 0.75;
-
+        
         // ৫. এক্সট্রা ইনসেন্টিভ ও ব্লক ডেভেলপমেন্ট গণনা
         let o = 0;
         
@@ -731,38 +731,59 @@ transform: translateY(0) scale(0.98);
 
         // ৬. মোট ফার (Base Far + Land Incentive + Other Incentives)
         let totalFar = baseFar + l + o;
-
+        
         // ৭. ফাইনাল রেজাল্ট: Total Far কোনোভাবেই Highest Far-কে ক্রস করবে না
         let fin = Math.min(totalFar, highestFar); 
-
-        // ৮. স্ক্রিনে বা এইচটিএমএলে নিরাপদভাবে মান প্রদর্শন করা
         let el = document.getElementById('fFar');
-        if(el) el.innerText = fin.toFixed(2);
-        
+
+        // ৮. UI আপডেট নিরাপদভাবে করা
         if(document.getElementById('bFar')) document.getElementById('bFar').innerText = baseFar.toFixed(2);
         if(document.getElementById('lInc')) document.getElementById('lInc').innerText = l.toFixed(2);
         if(document.getElementById('oInc')) document.getElementById('oInc').innerText = o.toFixed(2);
-        if(document.getElementById('totalFarDisp')) document.getElementById('totalFarDisp').innerText = fin.toFixed(2);
+        if(document.getElementById('totalFarDisp')) document.getElementById('totalFarDisp').innerText = totalFar.toFixed(2);
+        if(el) el.innerText = fin.toFixed(2);
 
+        // ৯. লিমিট ক্রস করলে ওয়ার্নিং অ্যানিমেশন (যদি totalFar সর্বোচ্চ সীমাকে অতিক্রম করার চেষ্টা করে)
+        if(el) {
+            if(totalFar > highestFar) {
+                el.classList.add('far-warning');
+                if(navigator.vibrate) navigator.vibrate(200);
+            } else {
+                el.classList.remove('far-warning');
+            }
+        }
     } catch (error) {
-        // কোনো সমস্যা হলে অ্যাপ ক্র্যাশ না করে শুধু কনসোলে এরর দেখাবে
         console.error("Calculation Error: ", error);
     }
 }
 
-    // লিমিট ক্রস করলে ওয়ার্নিং অ্যানিমেশন
-    if(tot > selectedBlock.far) {
-        el.classList.add('far-warning');
-        if(navigator.vibrate) navigator.vibrate(200);
-    } else {
-        el.classList.remove('far-warning');
+// অন্যান্য ফাংশনগুলো যেমন ছিল তেমনি রাখা হলো
+function setFarToCalc() { 
+    if(document.getElementById('fFar') && document.getElementById('D')) document.getElementById('D').value = document.getElementById('fFar').innerText; 
+    if(typeof selectedBlock !== 'undefined' && selectedBlock && document.getElementById('G')) document.getElementById('G').value = selectedBlock.density; 
+    if(document.getElementById('kathaLogic') && document.getElementById('A')) document.getElementById('A').value = document.getElementById('kathaLogic').value; 
+    if(typeof switchTab === 'function') switchTab('calcTab', 'btn1'); 
+    if(typeof runCalculation === 'function') runCalculation(true); 
+}
+
+function syncKatha() { 
+    if(document.getElementById('kathaLogic') && document.getElementById('A')) {
+        document.getElementById('A').value = document.getElementById('kathaLogic').value; 
     }
+}
 
+function toggleIncentive() { 
+    const el = document.getElementById('incentive-content'); 
+    if(el) el.style.display = el.style.display === "block" ? "none" : "block"; 
+}
 
-    function setFarToCalc() { document.getElementById('D').value = document.getElementById('fFar').innerText; document.getElementById('G').value = selectedBlock.density; document.getElementById('A').value = document.getElementById('kathaLogic').value; switchTab('calcTab', 'btn1'); runCalculation(true); }
-    function syncKatha() { document.getElementById('A').value = document.getElementById('kathaLogic').value; }
-    function toggleIncentive() { const el = document.getElementById('incentive-content'); el.style.display = el.style.display === "block" ? "none" : "block"; }
-    function toggleRoadInput() { document.getElementById('roadFeet').style.display = document.getElementById('road_chk').checked ? "block" : "none"; }
+function toggleRoadInput() { 
+    let roadFeetEl = document.getElementById('roadFeet');
+    let roadChkEl = document.getElementById('road_chk');
+    if(roadFeetEl && roadChkEl) {
+        roadFeetEl.style.display = roadChkEl.checked ? "block" : "none"; 
+    }
+}
 	
 	// কপি সামারি--------------------------------------------------------
 	function copySummary() {
