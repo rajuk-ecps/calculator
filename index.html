@@ -685,16 +685,21 @@ transform: translateY(0) scale(0.98);
 	}
 
     function calcLogic() {
-    // ১. বেস ফার (Existing এবং Proposed রোডের গড়)[cite: 5, 6]
-    const b = (parseFloat(document.getElementById('exRoad').value) + parseFloat(document.getElementById('prRoad').value)) / 2;
+    // ১. Existing এবং Proposed রোডের গড় মান বের করা
+    const avgRoad = (parseFloat(document.getElementById('exRoad').value) + parseFloat(document.getElementById('prRoad').value)) / 2;
     
-    // ২. ল্যান্ড ইনসেন্টিভ (জমির পরিমাণ অনুযায়ী)[cite: 5, 6]
+    // ২. রাস্তার গড় ফার বনাম ব্লক ফার: ছোটটি Base Far, বড়টি Highest Far নির্ধারণ
+    let baseFar = Math.min(avgRoad, selectedBlock.far);
+    let highestFar = Math.max(avgRoad, selectedBlock.far);
+
+    // ৩. ল্যান্ড ইনসেন্টিভ (জমির পরিমাণ অনুযায়ী)
     const k = parseFloat(document.getElementById('kathaLogic').value) || 0;
     let l = (k < 3) ? 0 : (k < 6) ? 0.20 : (k < 10) ? 0.35 : (k < 15) ? 0.50 : (k < 20) ? 0.65 : 0.75;
-    // ৩. এক্সট্রা ইনসেন্টিভ ও ব্লক ডেভেলপমেন্ট গণনা[cite: 5, 6]
+
+    // ৪. এক্সট্রা ইনসেন্টিভ ও ব্লক ডেভেলপমেন্ট গণনা
     let o = 0;
     
-    // ৭টি এডিশনাল ইনসেন্টিভ[cite: 5, 6]
+    // ৭টি এডিশনাল ইনসেন্টিভ
     if(document.getElementById('school').checked) o += 0.25;
     if(document.getElementById('park').checked) o += 0.25;
     if(document.getElementById('green').checked) o += 0.50;
@@ -706,16 +711,30 @@ transform: translateY(0) scale(0.98);
         if(ft > 30) o += (ft - 30) * 0.02; // ৩০ ফিটের বেশি হলে প্রতি ফিটে ০.০২ যোগ
     }
     
-    // ৪টি ব্লক ডেভেলপমেন্ট লজিক[cite: 5]
+    // ৪টি ব্লক ডেভেলপমেন্ট লজিক
     if(document.getElementById('b1').checked) o += 0.50; // Old Dhaka
     if(document.getElementById('b2').checked) o += 0.50; // 20K-2Ac
     if(document.getElementById('b3').checked) o += 0.75; // 2-5 Ac
     if(document.getElementById('b4').checked) o += 1.0;  // 5Ac+
 
-    // ৪. ফাইনাল রেজাল্ট ও ব্লক লিমিট চেক[cite: 5, 6]
-    let tot = b + l + o;
-    let fin = Math.min(tot, selectedBlock.far); // ব্লকের নির্ধারিত সীমার বেশি হবে না[cite: 5, 6]
+    // ৫. মোট ফার (Base Far + Land Incentive + Other Incentives)
+    let totalFar = baseFar + l + o;
+
+    // ৬. ফাইনাল রেজাল্ট: Total Far কোনোভাবেই Highest Far-কে ক্রস করবে না
+    let fin = Math.min(totalFar, highestFar); 
+
+    // ৭. স্ক্রিনে বা এইচটিএমএলে মান প্রদর্শন করা
     let el = document.getElementById('fFar');
+    if(el) {
+        el.innerText = fin.toFixed(2);
+    }
+    
+    // যদি প্রয়োজন হয় নিচের ডিসপ্লে ফিল্ডগুলোও আপডেট করে নিতে পারেন:
+    if(document.getElementById('bFar')) document.getElementById('bFar').innerText = baseFar.toFixed(2);
+    if(document.getElementById('lInc')) document.getElementById('lInc').innerText = l.toFixed(2);
+    if(document.getElementById('oInc')) document.getElementById('oInc').innerText = o.toFixed(2);
+    if(document.getElementById('totalFarDisp')) document.getElementById('totalFarDisp').innerText = fin.toFixed(2);
+}
 
     // UI আপডেট
     document.getElementById('bFar').innerText = b.toFixed(2);
