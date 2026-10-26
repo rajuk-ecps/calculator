@@ -736,13 +736,6 @@ transform: translateY(0) scale(0.98);
     if(document.getElementById('totalFarDisp')) document.getElementById('totalFarDisp').innerText = fin.toFixed(2);
 }
 
-    // UI আপডেট
-    document.getElementById('bFar').innerText = b.toFixed(2);
-    document.getElementById('lInc').innerText = l.toFixed(2);
-    document.getElementById('oInc').innerText = o.toFixed(2);
-    document.getElementById('totalFarDisp').innerText = tot.toFixed(2);
-    el.innerText = fin.toFixed(2);
-
     // লিমিট ক্রস করলে ওয়ার্নিং অ্যানিমেশন
     if(tot > selectedBlock.far) {
         el.classList.add('far-warning');
